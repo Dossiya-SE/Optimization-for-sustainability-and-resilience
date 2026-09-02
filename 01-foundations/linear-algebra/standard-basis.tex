@@ -1,0 +1,22 @@
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=2.0]
+  \draw[->] (-0.25,0) -- (1.65,0) node[right] {$x_1$};
+  \draw[->] (0,-0.25) -- (0,1.50) node[above] {$x_2$};
+
+  \coordinate (O) at (0,0);
+  \coordinate (X) at (1.15,0.85);
+
+  \draw[->,very thick] (O) -- (1,0) node[midway,below] {$e_1$};
+  \draw[->,very thick] (O) -- (0,1) node[midway,left] {$e_2$};
+  \draw[->,very thick] (O) -- (X) node[above right] {$x$};
+
+  \draw[dashed] (X) -- (1.15,0) node[below] {$x_1$};
+  \draw[dashed] (X) -- (0,0.85) node[left] {$x_2$};
+
+  \node[below left] at (O) {$0$};
+  \node[right] at (1.30,0.25) {$e_1=\begin{bmatrix}1\\0\end{bmatrix}$};
+  \node[right] at (0.25,1.15) {$e_2=\begin{bmatrix}0\\1\end{bmatrix}$};
+\end{tikzpicture}
+\caption{Standard basis representation: $x=x_1e_1+x_2e_2$ in $\mathbb R^2$.}
+\end{figure}
