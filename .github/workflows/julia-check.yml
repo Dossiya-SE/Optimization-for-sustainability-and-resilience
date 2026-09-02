@@ -1,0 +1,29 @@
+name: Julia Mathematical Checks
+
+on:
+  push:
+    paths:
+      - "**/*.jl"
+      - ".github/workflows/julia-check.yml"
+  pull_request:
+    paths:
+      - "**/*.jl"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  julia-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: "1"
+
+      - name: Run mathematical smoke test
+        run: julia notebooks/julia/smoke_test.jl
