@@ -6,11 +6,19 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 TEXT_SUFFIXES = {".md", ".tex", ".jl", ".py", ".yml", ".yaml", ".cff", ".bib"}
+
 SECRET_PATTERNS = [
     re.compile(r"sk-proj-[A-Za-z0-9_-]{20,}"),
     re.compile(r"OPENAI_API_KEY\s*=\s*[\"']?sk-", re.IGNORECASE),
 ]
-CONFLICT_MARKERS = ("<<<<<<<", "=======", ">>>>>>>")
+
+# Match actual conflict-marker lines without embedding the literal markers
+# in this source file, which would make the checker flag itself.
+CONFLICT_PATTERNS = [
+    re.compile(r"^<{7}(?:\s|$)", re.MULTILINE),
+    re.compile(r"^={7}(?:\s|$)", re.MULTILINE),
+    re.compile(r"^>{7}(?:\s|$)", re.MULTILINE),
+]
 
 errors: list[str] = []
 warnings: list[str] = []
@@ -37,16 +45,17 @@ for path in sorted(ROOT.rglob("*")):
         if pattern.search(text):
             errors.append(f"Possible committed API credential in {rel}")
 
-    if all(marker in text for marker in CONFLICT_MARKERS):
-        errors.append(f"Unresolved merge-conflict markers in {rel}")
+    if any(pattern.search(text) for pattern in CONFLICT_PATTERNS):
+        errors.append(f"Unresolved merge-conflict marker in {rel}")
 
     trailing = sum(1 for line in text.splitlines() if line.endswith(" ") or line.endswith("\t"))
     if trailing:
         warnings.append(f"{rel}: {trailing} line(s) with trailing whitespace")
 
     if path.suffix.lower() == ".md":
-        if "```math" in text and text.count("```") % 2 != 0:
-            errors.append(f"Unbalanced fenced code/math block in {rel}")
+        fence_count = text.count("```")
+        if fence_count % 2 != 0:
+            errors.append(f"Unbalanced fenced block in {rel}")
 
 print(f"Checked {checked} text files.")
 
