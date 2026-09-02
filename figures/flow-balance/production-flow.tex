@@ -1,0 +1,26 @@
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >=Stealth,
+  node distance=2.8cm,
+  product/.style={draw,rounded corners,minimum width=2.2cm,minimum height=1cm,align=center}
+]
+\node[product] (p1) {Product 1\\$x_1$};
+\node[product,right=of p1] (p2) {Product 2\\$x_2$};
+\node[product,right=of p2] (p3) {Product 3\\$x_3$};
+
+\draw[->,thick] (p1) -- node[above] {$b_2x_2$} (p2);
+\draw[->,thick] (p2) -- node[above] {$b_3x_3$} (p3);
+
+\draw[->] (p1.south) -- ++(0,-1) node[below] {$s_1$};
+\draw[->] (p2.south) -- ++(0,-1) node[below] {$s_2$};
+\draw[->] (p3.south) -- ++(0,-1) node[below] {$s_3$};
+\end{tikzpicture}
+\caption{Multi-stage production and sales flow.}
+\end{figure}
+
+\begin{align}
+x_1 &= s_1+b_2x_2,\\
+x_2 &= s_2+b_3x_3,\\
+x_3 &= s_3.
+\end{align}
