@@ -52,8 +52,40 @@ The same structure can represent cost, emissions, service loss, recovery time, r
 | `figures/` | TikZ and mathematical visualization assets |
 | `notebooks/` | Julia and Python computational verification |
 | `mindmaps/` | Xmind-importable Markdown maps |
+| `docs/visual-architectures/` | GitHub-native Mermaid research maps and systems diagrams |
 | `references/` | Reading lists and bibliography |
 | `tools/openai-platform/` | Optional future AI-assisted research workflow notes |
+
+## Visual knowledge system
+
+The repository now maintains multiple complementary visual representations rather than a single mind map. See [`docs/visual-architectures/README.md`](docs/visual-architectures/README.md).
+
+The visual system includes:
+
+1. hierarchical knowledge map,
+2. concept map,
+3. mathematical dependency graph,
+4. systems engineering architecture,
+5. multilayer power-water-transportation network,
+6. research-gap map,
+7. computational workflow,
+8. cross-domain knowledge graph,
+9. radial research map,
+10. learning and research roadmap,
+11. hybrid scientific architecture.
+
+Together they represent different relations:
+
+```math
+\boxed{
+\text{organization}
++\text{dependency}
++\text{coupling}
++\text{causality}
++\text{workflow}
++\text{research logic}
+}
+```
 
 ## Modeling standard
 
