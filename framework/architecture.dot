@@ -1,0 +1,35 @@
+digraph Framework {
+  graph [rankdir=LR, bgcolor="#071019", pad=0.35, nodesep=0.35, ranksep=0.65, fontname="Helvetica", splines=ortho];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, fontcolor="#F5F7FA", color="#314255", fillcolor="#0C1520", penwidth=1.3, margin="0.15,0.10"];
+  edge [color="#668399", fontcolor="#9CB0C2", fontname="Helvetica", fontsize=10, penwidth=1.4, arrowsize=0.7];
+
+  subgraph cluster_resilience {
+    label="CORE RESILIENCE ANALYSIS"; labelloc=t; labeljust=l; color="#1F3548"; fontcolor="#9ACCE3"; penwidth=1.4; style="rounded";
+    S1 [label="01  MULTILAYER STRUCTURE\nG, Y, Z\nWHAT EXISTS?", color="#D0A94B"];
+    S2 [label="02  CAUSAL MECHANISMS\nC, e_i -> e_j, z_ij\nWHY PROPAGATE?", color="#F18F6D"];
+    S3 [label="03  COUPLED HYBRID\nMULTISCALE DYNAMICS\nZ, F, J, tau\nHOW + WHEN?", color="#A88BFF", penwidth=2.2];
+    S4 [label="04  FEEDBACK & CONTROL\nH_obs, Y_hat, I, O, pi, u\nHOW RESPOND?", color="#62C7FF"];
+    S5 [label="05  VIABILITY\nK, V\nCAN IT SURVIVE?", color="#E5EBF2"];
+    S1 -> S2 -> S3 -> S4 -> S5;
+  }
+
+  S6 [label="06  RESILIENCE -> SUSTAINABILITY\nTRANSFORMATION INTERFACE\nR -> T_ST -> S\nWHAT IMPLIES?", color="#62D99B", fillcolor="#0A1A16", penwidth=2.2];
+  S5 -> S6;
+
+  subgraph cluster_sus {
+    label="SUSTAINABILITY TRANSFORMATION"; labelloc=t; labeljust=l; color="#1D5A47"; fontcolor="#7FE0B2"; penwidth=1.4; style="rounded";
+    S7 [label="07  SUSTAINABLE TRANSFORMATION\nPATHWAYS\nWHAT TRANSFORMS?", color="#39C983", fillcolor="#0A1914", penwidth=2.0];
+    T [label="Technical", color="#39C983", fillcolor="#0D241B"];
+    O [label="Organizational", color="#39C983", fillcolor="#0D241B"];
+    E [label="Environmental", color="#39C983", fillcolor="#0D241B"];
+    P [label="Policy / Governance", color="#39C983", fillcolor="#0D241B"];
+    S7 -> {T O E P};
+  }
+  S6 -> S7;
+
+  PWR [label="POWER", color="#D0A94B"];
+  TRN [label="TRANSPORTATION", color="#DDE7F0"];
+  INF [label="INFORMATION", color="#62C7FF"];
+  ORG [label="ORGANIZATION", color="#A88BFF"];
+  {PWR TRN INF ORG} -> S1 [style=dashed, color="#40596F"];
+}
