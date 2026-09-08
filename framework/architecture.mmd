@@ -1,0 +1,19 @@
+flowchart LR
+  subgraph R["CORE RESILIENCE ANALYSIS"]
+    S1["1. Multilayer Structure<br/>G, Y, Z<br/>WHAT EXISTS?"] --> S2["2. Causal Mechanisms<br/>C, e_i -> e_j, z_ij<br/>WHY PROPAGATE?"]
+    S2 --> S3["3. Coupled Hybrid Multiscale Dynamics<br/>Z, F, J, tau<br/>HOW + WHEN?"]
+    S3 --> S4["4. Feedback & Control<br/>H_obs, Y_hat, I, O, pi, u<br/>HOW RESPOND?"]
+    S4 --> S5["5. Viability<br/>K, V<br/>CAN IT SURVIVE?"]
+  end
+  S5 --> S6["6. Resilience-to-Sustainability Transformation Interface<br/>R -> T_ST -> S<br/>WHAT IMPLIES?"]
+  subgraph ST["SUSTAINABILITY TRANSFORMATION"]
+    S6 --> S7["7. Sustainable Transformation Pathways<br/>WHAT TRANSFORMS?"]
+    S7 --> T["Technical"]
+    S7 --> O["Organizational"]
+    S7 --> E["Environmental"]
+    S7 --> P["Policy / Governance"]
+  end
+  PWR["Power"] --> S1
+  TRN["Transportation"] --> S1
+  INF["Information"] --> S1
+  ORG["Organization"] --> S1
