@@ -24,6 +24,22 @@ flowchart LR
     S --> I[Intervention / policy]
 ```
 
+## Canonical resilience-to-sustainability framework
+
+The current authoritative Power–Transportation–Information–Organization framework is maintained in [`04-resilience/FINAL_FRAMEWORK.md`](04-resilience/FINAL_FRAMEWORK.md).
+
+```text
+1. Multilayer Structure
+→ 2. Causal Mechanisms
+→ 3. Coupled Hybrid Multiscale Dynamics
+→ 4. Feedback & Control
+→ 5. Viability
+→ 6. Resilience-to-Sustainability Transformation Interface
+→ 7. Sustainable Transformation Pathways
+```
+
+Stages 1–5 are the core resilience-analysis framework. Stages 6–7 translate resilience findings into sustainable-transformation requirements and pathways without altering the resilience model itself.
+
 ## Mathematical viewpoint
 
 A generic optimization model has the form
@@ -122,4 +138,5 @@ This is a **public** repository. During an active course, graded homework soluti
 ## Status
 
 **Phase 1:** deterministic operations-research foundations.  
-**Next:** network flow, sustainability objectives, resilience metrics, and coupled infrastructure models.
+**Current research framework:** seven-stage P–T–I–O resilience-to-sustainability architecture.  
+**Next:** network flow, sustainability objectives, resilience metrics, coupled infrastructure models, and computational validation.
