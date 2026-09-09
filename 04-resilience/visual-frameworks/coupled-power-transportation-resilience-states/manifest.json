@@ -1,0 +1,46 @@
+{
+  "created": "2026-09-09",
+  "canva": {
+    "design_id": "DAHUsIJrWPg",
+    "edit_url": "https://www.canva.com/d/X6hXhoWuSp81WOb",
+    "view_url": "https://www.canva.com/d/V6mkH4JVp7FbDpE"
+  },
+  "raster_iterations": {
+    "final_a3_png": {
+      "filename": "coupled_resilience_and_failure_states.png",
+      "sha256": "6f25d074cd8864c823e9c5d114d9cd5e1265fd3b45e4b9f2cdabd0835f60dcb7",
+      "bytes": 1534942,
+      "pixels": [1055, 1491]
+    },
+    "high_rigor_detailed_png": {
+      "filename": "a_clean_infographic_poster_on_a_white_background.png",
+      "sha256": "c214ff3499dd475d95e1f3474bf321e26fd25feceb2c7900885da3519d1c165f",
+      "bytes": 1628821,
+      "pixels": [1087, 1447]
+    },
+    "tricolor_viability_png": {
+      "filename": "resilience_to_cascading_failure_states.png",
+      "sha256": "e1cd5c274c636598e78a0983536622ce4989affe674bb550fdb83989f6fdc5a9",
+      "bytes": 1336974,
+      "pixels": [1086, 1448]
+    },
+    "canva_reconstruction_png": {
+      "filename": "coupled_resilience_states_infographic.png",
+      "sha256": "fe6dc67e9e9ce759bb229bf4ba55860389b128e9f53cdb7b9c2e887e9773f261",
+      "bytes": 1513627,
+      "pixels": [1086, 1448]
+    },
+    "reference_tricolor_png": {
+      "filename": "03baa1bd-3767-40a8-a6fd-c03d346170e7.png",
+      "sha256": "1b7dfa22037b2b3d8447768683889f24063d1d00305476fb426e225f0e9d42a3",
+      "bytes": 2092314,
+      "pixels": [1086, 1448]
+    },
+    "reference_assets_liabilities_png": {
+      "filename": "a889113c-73a7-44d0-850a-672d7ccb9f9c.png",
+      "sha256": "335dad250401c912bca97ed9b78f9a905bdc05d29b027902fd13d6c0aebd0516",
+      "bytes": 262491,
+      "pixels": [500, 707]
+    }
+  }
+}
