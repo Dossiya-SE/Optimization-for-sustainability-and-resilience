@@ -18,6 +18,14 @@ Multilayer Structure
 
 Stages 1–5 form the core resilience-analysis framework. Stages 6–7 translate resilience outputs into sustainable-transformation inputs and pathways without changing the core resilience model.
 
+## Visual framework archive
+
+The reusable A3 poster, mathematical notation, deterministic SVG generator, Canva edit link, and design-session manifest for the viability-based resilience-state visual are stored in:
+
+[`visual-frameworks/coupled-power-transportation-resilience-states/`](visual-frameworks/coupled-power-transportation-resilience-states/)
+
+The visual uses the signed viability margin $\rho_{\mathcal V}^{\pm}(Y)$ to distinguish inside, boundary, and outside of the viable region.
+
 Core model dimensions:
 
 - robustness,
