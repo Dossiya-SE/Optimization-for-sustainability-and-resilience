@@ -9,9 +9,7 @@ This thesis research is conducted within the **Master of Science in Engineering 
 **Canonical degree abbreviation:** `MSE`  
 **Canonical expansion:** `Master of Science in Engineering`
 
-For this ASU thesis and all related framework, modeling, presentation, and validation materials, use **MSE**, not **MSc**.
-
-> **Nomenclature rule:** `MSc` must not be used as the abbreviation for this thesis degree. Legitimate references to other degrees that are formally titled MSc (for example, an external MSc program) are not affected by this rule.
+For this ASU thesis and all related framework, modeling, presentation, and validation materials, use **MSE** exclusively.
 
 See [`PROJECT_IDENTITY.md`](PROJECT_IDENTITY.md) for the canonical project identity.
 
