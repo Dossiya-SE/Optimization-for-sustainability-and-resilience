@@ -2,7 +2,10 @@
 
 **Status:** Canonical framework  
 **Frozen:** 2026-09-09  
+**Degree:** Master of Science in Engineering (MSE), Sustainable Engineering  
 **Change rule:** Treat this framework as authoritative until the user explicitly requests a change.
+
+> **Degree nomenclature rule:** This framework belongs to the **MSE (Master of Science in Engineering)** thesis. Do not label this research as MSc.
 
 ## Canonical seven-stage architecture
 
@@ -129,3 +132,5 @@ Equivalently:
 ## Scope
 
 The coupled system is Power–Transportation–Information–Organization (P–T–I–O). The framework is intended to study interdependencies, disruption propagation, hybrid and multiscale dynamics, information and organizational feedback, recovery/control, viability, and the translation of resilience findings into long-term sustainable transformation pathways.
+
+This is the canonical framework for the **Master of Science in Engineering (MSE)** thesis.
