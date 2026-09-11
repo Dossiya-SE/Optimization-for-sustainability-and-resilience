@@ -6,7 +6,7 @@
 **Scope:** Multilayer interdependent infrastructure resilience and sustainability research.  
 **Change rule:** Use this system description throughout the thesis unless it is explicitly revised and versioned.
 
-> **Degree nomenclature rule:** This research is an **MSE (Master of Science in Engineering)** thesis. Do not describe it as an MSc thesis.
+> **Degree nomenclature rule:** This research is an **MSE (Master of Science in Engineering)** thesis.
 
 ---
 
