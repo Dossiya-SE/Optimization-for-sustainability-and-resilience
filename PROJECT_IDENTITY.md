@@ -6,13 +6,11 @@
 
 ## Nomenclature rule
 
-For this thesis research, use:
+For this thesis research, use only:
 
 ```text
 Master of Science in Engineering (MSE)
 ```
-
-Do **not** use `MSc` as the abbreviation for this thesis degree.
 
 This rule applies to all thesis-specific:
 
@@ -25,8 +23,6 @@ This rule applies to all thesis-specific:
 - repository documentation,
 - progress reports,
 - thesis drafts.
-
-The rule does **not** alter legitimate references to unrelated degrees whose official title is MSc.
 
 ## Canonical research system
 
