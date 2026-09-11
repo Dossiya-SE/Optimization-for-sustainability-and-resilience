@@ -2,8 +2,11 @@
 
 **Status:** CANONICAL THESIS DEFINITION  
 **Adopted:** 2026-09-11  
+**Degree:** Master of Science in Engineering (MSE), Sustainable Engineering  
 **Scope:** Multilayer interdependent infrastructure resilience and sustainability research.  
 **Change rule:** Use this system description throughout the thesis unless it is explicitly revised and versioned.
+
+> **Degree nomenclature rule:** This research is an **MSE (Master of Science in Engineering)** thesis. Do not describe it as an MSc thesis.
 
 ---
 
@@ -124,4 +127,4 @@ $$
 
 > **The research studies a multilayer interdependent Power-Transportation infrastructure system in which Power and Transportation form the physical infrastructure systems, while Information and Organization form interacting informational and organizational layers that shape observation, coordination, control, propagation, recovery, viability, and sustainable transformation.**
 
-This description is the default system identity for the thesis, presentations, literature extraction, mathematical modeling, simulation, validation, and framework design unless explicitly changed.
+This description is the default system identity for the **MSE (Master of Science in Engineering)** thesis, presentations, literature extraction, mathematical modeling, simulation, validation, and framework design unless explicitly changed.
