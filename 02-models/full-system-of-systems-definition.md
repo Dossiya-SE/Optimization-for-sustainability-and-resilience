@@ -614,27 +614,3 @@ and the global state:
 ```math
 \boxed{ Y(t)= [ x_P(t),x_T(t),z_I(t),z_O(t) ]^\top. }
 ```
-
-## Framework level vs MSc implementation
-
-The **framework remains comprehensive** as above.
-
-For the numerical MSc demonstrator, a tractable core would be:
-
-```math
-\boxed{ P_{\mathrm{case}} = \{P_D,P_{DER},P_C,P_{TP}\} }
-```
-
-```math
-\boxed{ T_{\mathrm{case}} = \{T_R,T_B,T_U\} }
-```
-
-```math
-\boxed{ I_{\mathrm{case}} = \{\text{sensing, communication, estimation, cross-domain signaling}\} }
-```
-
-```math
-\boxed{ O_{\mathrm{case}} = \{\text{decision, coordination, resource allocation, mobilization}\} }
-```
-
-This preserves the **general System-of-Systems theory** while keeping the validation computationally feasible.
