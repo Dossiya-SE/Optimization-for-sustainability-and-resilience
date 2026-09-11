@@ -2,6 +2,19 @@
 
 A developing mathematical and computational repository for **optimization of sustainable and resilient engineering systems**.
 
+## Program identity and nomenclature
+
+This thesis research is conducted within the **Master of Science in Engineering (MSE) in Sustainable Engineering** program.
+
+**Canonical degree abbreviation:** `MSE`  
+**Canonical expansion:** `Master of Science in Engineering`
+
+For this ASU thesis and all related framework, modeling, presentation, and validation materials, use **MSE**, not **MSc**.
+
+> **Nomenclature rule:** `MSc` must not be used as the abbreviation for this thesis degree. Legitimate references to other degrees that are formally titled MSc (for example, an external MSc program) are not affected by this rule.
+
+See [`PROJECT_IDENTITY.md`](PROJECT_IDENTITY.md) for the canonical project identity.
+
 The repository is organized around one intellectual progression:
 
 ```mermaid
@@ -137,6 +150,7 @@ This is a **public** repository. During an active course, graded homework soluti
 
 ## Status
 
+**Degree:** Master of Science in Engineering (MSE), Sustainable Engineering.  
 **Phase 1:** deterministic operations-research foundations.  
 **Current research framework:** seven-stage P–T–I–O resilience-to-sustainability architecture.  
 **Next:** network flow, sustainability objectives, resilience metrics, coupled infrastructure models, and computational validation.
