@@ -5,7 +5,7 @@
 **Degree:** Master of Science in Engineering (MSE), Sustainable Engineering  
 **Change rule:** Treat this framework as authoritative until the user explicitly requests a change.
 
-> **Degree nomenclature rule:** This framework belongs to the **MSE (Master of Science in Engineering)** thesis. Do not label this research as MSc.
+> **Degree nomenclature rule:** This framework belongs to the **MSE (Master of Science in Engineering)** thesis.
 
 ## Canonical seven-stage architecture
 
