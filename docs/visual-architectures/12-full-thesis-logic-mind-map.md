@@ -242,8 +242,7 @@ A thesis-level controlled coupled model is therefore written as
 F_{\mathcal G}
 \left(
 Y(t),
-Z_{PT}(t),
-u(t),
+Z_{PT}(t),u(t),
 \eta(t);
 \theta,
 \mathbb I(t)
@@ -254,8 +253,7 @@ u(t),
 with feasible intervention constrained by information and organizational state:
 
 ```math
-\boxed{
-u(t)\in\mathcal U\!\left(z_I(t),z_O(t)\right)}.
+\boxed{u(t)\in\mathcal U\!\left(z_I(t),z_O(t)\right)}.
 ```
 
 Here \(Z_{PT}\) collects interface states. In a hybrid model, discrete jumps/mode changes are added explicitly rather than hidden inside a purely continuous equation.
