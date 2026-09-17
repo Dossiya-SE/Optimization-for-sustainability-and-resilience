@@ -44,8 +44,9 @@ flowchart LR
     C --> B13
     C --> B14
 
-    B1 --> B1A["Systems Thinking / Iceberg<br/>Events → Patterns → Structures → Rules"]
-    B1 --> B1B["Systems Engineering<br/>Need → Requirements → Architecture → Interfaces → Models → V&V → Decision"]
+    B1 --> B1A["1.1 Systems Thinking — Understand<br/>Events → Patterns → Structures → Rules"]
+    B1 --> B1C["1.2 Design Thinking — Frame + Generate + Learn<br/>Discover needs → Define problem → Generate alternatives → Test / learn"]
+    B1 --> B1B["1.3 Systems Engineering — Formalize + Verify<br/>Requirements → Architecture → Interfaces → Models → Verification → Validation"]
 
     B2 --> B2A["Physical layer<br/>P + T"]
     B2 --> B2B["Support layer<br/>I + O"]
@@ -105,6 +106,9 @@ flowchart LR
     B14 --> B14B["Canonical 7-stage backbone<br/>Structure → Causal Mechanisms → Hybrid Multiscale Dynamics<br/>→ Feedback & Control → Viability → R→S Interface → Pathways"]
     B14 --> B14C["Interpretation rule<br/>14 branches = decomposition for reasoning and communication<br/>7 stages = authoritative thesis architecture"]
 
+    B1C -.-> B9
+    B11 -.-> B1C
+
     classDef central fill:#111111,stroke:#D4AF37,color:#FFFFFF,stroke-width:4px;
     classDef main fill:#2A2A2A,stroke:#D4AF37,color:#FFFFFF,stroke-width:2px;
     classDef child fill:#FFFFFF,stroke:#4A4A4A,color:#111111,stroke-width:1px;
@@ -113,7 +117,7 @@ flowchart LR
 
     class C central;
     class B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14 main;
-    class B1A,B1B,B2A,B2B,B2C,B3A,B3B,B3C,B3D,B3E,B4A,B4B,B4C,B5A,B5B,B5C,B6A,B6B,B6C,B7A,B7B,B7C,B8A,B8B,B8C,B9A,B9B,B9C,B10A,B10B,B10C,B11A,B11B,B11C,B12A,B12B,B12C,B12D,B12E,B13A,B13B,B13C,B14A,B14B,B14C child;
+    class B1A,B1B,B1C,B2A,B2B,B2C,B3A,B3B,B3C,B3D,B3E,B4A,B4B,B4C,B5A,B5B,B5C,B6A,B6B,B6C,B7A,B7B,B7C,B8A,B8B,B8C,B9A,B9B,B9C,B10A,B10B,B10C,B11A,B11B,B11C,B12A,B12B,B12C,B12D,B12E,B13A,B13B,B13C,B14A,B14B,B14C child;
     class B3F,B13D guard;
     class B12A,B12B,B12C,B12D,B12E test;
 
@@ -125,6 +129,60 @@ flowchart LR
 ## Mathematical anchors
 
 The visual uses concise notation in Mermaid. The exact mathematical reading is the following.
+
+### 0. Foundational reasoning and design loop
+
+The three reasoning disciplines have distinct but complementary roles:
+
+```math
+\boxed{
+\underbrace{\text{Systems Thinking}}_{\text{understand}}
+\rightarrow
+\underbrace{\text{Design Thinking}}_{\text{frame + explore + learn}}
+\rightarrow
+\underbrace{\text{Systems Engineering}}_{\text{formalize + verify}}
+}
+```
+
+Design thinking is represented as an evidence-constrained problem-framing and alternative-generation process:
+
+```math
+\boxed{
+(\mathcal N,\mathcal C,\mathcal E)
+\rightarrow
+\mathcal P
+\rightarrow
+\mathcal R_D
+\rightarrow
+\mathcal A_{\rm candidate}
+\rightarrow
+\mathcal E_{\rm test}
+}
+```
+
+where \(\mathcal N\) denotes stakeholder/service needs, \(\mathcal C\) the operating context, \(\mathcal E\) the available evidence, \(\mathcal P\) the framed problem, \(\mathcal R_D\) the resulting design requirements, \(\mathcal A_{\rm candidate}\) the candidate intervention set, and \(\mathcal E_{\rm test}\) test or simulation evidence.
+
+The dashed links in the map encode only two cross-stage roles:
+
+```math
+\boxed{
+\text{Design Thinking}
+\dashrightarrow
+\text{Intervention generation}
+}
+```
+
+and
+
+```math
+\boxed{
+\text{Engineering Decision}
+\dashrightarrow
+\text{Design learning / redesign}
+}
+```
+
+**Guardrail:** Design thinking is **not** a fifth P–T–I–O subsystem, **not** an eighth canonical thesis stage, and **not** a substitute for physical validation. It expands and refines the problem and intervention spaces; physics, viability, uncertainty analysis, and verification determine whether candidate designs are admissible.
 
 ### 1. Multilayer architecture
 
@@ -394,7 +452,7 @@ Extensions such as EV charging, V2G, traction power, mobile generation and other
 
 | Mind-map content | Canonical role |
 |---|---|
-| **1. Foundational Reasoning** | Pre-model reasoning discipline: systems thinking + systems engineering |
+| **1. Foundational Reasoning** | Pre-model reasoning discipline: systems thinking + design thinking + systems engineering |
 | **2–4. Architecture, Physical, Support layers** | **Stage 1 — Multilayer Structure** |
 | **3.3–3.5 + 5. Interdependency mechanisms/object** | **Stage 2 — Causal Mechanisms** |
 | **3.6 Hazard + 6. Coupled Dynamics** | **Stage 3 — Coupled Hybrid Multiscale Dynamics** |
