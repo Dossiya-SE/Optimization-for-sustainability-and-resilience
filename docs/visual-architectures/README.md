@@ -15,6 +15,7 @@ This directory contains reproducible research maps rendered directly by GitHub u
 | 9 | Radial research map | What are the major research branches around the central theme? | `09-radial-research-map.md` |
 | 10 | Learning roadmap | What is the recommended progression? | `10-learning-roadmap.md` |
 | 11 | Hybrid scientific architecture | How do all layers interact as one scientific system? | `11-hybrid-scientific-architecture.md` |
+| 12 | Full thesis logic mind map | How do the complete P–T–I–O thesis objects, hypotheses, demonstrator, and decision logic fit together? | `12-full-thesis-logic-mind-map.md` |
 
 ## Recommended use
 
@@ -32,6 +33,8 @@ Do not choose one diagram to replace all others. They represent different mathem
 ```
 
 Together they form the repository's visual knowledge system.
+
+The **full thesis logic mind map** is a detailed visual decomposition of the current Power–Transportation–Information–Organization thesis. It is subordinate to the frozen canonical framework and canonical mathematical definitions; its purpose is synthesis and navigation, not redefinition.
 
 ## GitHub-native principle
 
