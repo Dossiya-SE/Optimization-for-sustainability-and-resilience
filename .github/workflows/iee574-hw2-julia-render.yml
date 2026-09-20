@@ -29,9 +29,17 @@ jobs:
         working-directory: .automation/hw2/work/IEE574_HW2_Julia
         run: julia setup.jl
 
-      - name: Render all figures
+      - name: Render Problem 2
         working-directory: .automation/hw2/work/IEE574_HW2_Julia
-        run: julia --project=. render_all.jl
+        run: julia --project=. problem2_hyperplane.jl
+
+      - name: Render Problem 3
+        working-directory: .automation/hw2/work/IEE574_HW2_Julia
+        run: julia --project=. problem3_polyhedron.jl
+
+      - name: Render Problem 4
+        working-directory: .automation/hw2/work/IEE574_HW2_Julia
+        run: julia --project=. problem4_lp_geometry.jl
 
       - name: Verify Problem 4 with JuMP and HiGHS
         working-directory: .automation/hw2/work/IEE574_HW2_Julia
@@ -43,10 +51,8 @@ jobs:
           test -s figures/P2_hyperplane_halfspaces.pdf
           test -s figures/P3_polyhedron_recession.pdf
           test -s figures/P4_lp_geometry.pdf
-          pdfinfo figures/P2_hyperplane_halfspaces.pdf | head -20 || true
-          pdfinfo figures/P3_polyhedron_recession.pdf | head -20 || true
-          pdfinfo figures/P4_lp_geometry.pdf | head -20 || true
           sha256sum figures/*.pdf | tee figure_sha256.txt
+          ls -lh figures
 
       - name: Upload rendered figures
         uses: actions/upload-artifact@v4
