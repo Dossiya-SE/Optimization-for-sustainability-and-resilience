@@ -16,6 +16,7 @@ The default problem-solving architecture for this course is documented in:
 
 - [`notes/modeling-reasoning-protocol.md`](notes/modeling-reasoning-protocol.md) — engineering interpretation → notation tables → constraint derivation → formulation → audit → Julia implementation → verification → engineering interpretation.
 - [`notes/notation-standard.md`](notes/notation-standard.md) — common mathematical notation and modeling order.
+- [`notes/topics-1-6-authoritative-framework.md`](notes/topics-1-6-authoritative-framework.md) — authoritative Topics 1–6 baseline: OR workflow, formulation rules, IEE 574 standard form, LP geometry, recession/extreme directions, graphical method, and BS/BFS theory.
 
 The protocol treats tables as **reasoning and model-debugging instruments**, not merely formatting devices. For substantial problems, use:
 
