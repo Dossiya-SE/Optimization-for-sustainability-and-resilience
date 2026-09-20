@@ -29,20 +29,20 @@ jobs:
 
       - name: Verify outputs
         run: |
-          test -s IEE574_HW2_Problem2_complete.pdf
-          test -s IEE574_HW2_Problem2_complete.svg
-          test -s IEE574_HW2_Problem2_complete.png
-          sha256sum IEE574_HW2_Problem2_complete.pdf | tee problem2_sha256.txt
-          ls -lh IEE574_HW2_Problem2_complete.*
+          test -s IEE574_HW2_Problem2_FINAL.pdf
+          test -s IEE574_HW2_Problem2_FINAL.svg
+          test -s IEE574_HW2_Problem2_FINAL.png
+          sha256sum IEE574_HW2_Problem2_FINAL.pdf | tee problem2_sha256.txt
+          ls -lh IEE574_HW2_Problem2_FINAL.*
 
       - name: Upload final rendered files
         uses: actions/upload-artifact@v4
         with:
-          name: IEE574-Problem2-Final-CairoMakie
+          name: IEE574-Problem2-Final-CairoMakie-V2
           path: |
-            IEE574_HW2_Problem2_complete.pdf
-            IEE574_HW2_Problem2_complete.svg
-            IEE574_HW2_Problem2_complete.png
+            IEE574_HW2_Problem2_FINAL.pdf
+            IEE574_HW2_Problem2_FINAL.svg
+            IEE574_HW2_Problem2_FINAL.png
             problem2_sha256.txt
           if-no-files-found: error
           retention-days: 7
