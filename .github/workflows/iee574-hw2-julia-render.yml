@@ -1,4 +1,4 @@
-name: IEE574 HW2 Julia Render
+name: IEE574 Problem 2 Exact CairoMakie Render
 
 on:
   push:
@@ -19,51 +19,26 @@ jobs:
         with:
           version: '1.12'
 
-      - name: Unpack and patch Julia package
+      - name: Install CairoMakie and LaTeXStrings
         run: |
-          mkdir -p .automation/hw2/work
-          unzip -q .automation/hw2/IEE574_HW2_Julia.zip -d .automation/hw2/work
-          sed -i 's/\\operatorname{rec}(X)/\\mathrm{rec}(X)/g' .automation/hw2/work/IEE574_HW2_Julia/problem3_polyhedron.jl
-          ls -R .automation/hw2/work
+          julia -e 'using Pkg; Pkg.activate(".automation/hw2/exact_env"); Pkg.add(["CairoMakie","LaTeXStrings"]); Pkg.precompile()'
 
-      - name: Install Julia dependencies
-        working-directory: .automation/hw2/work/IEE574_HW2_Julia
-        run: julia setup.jl
-
-      - name: Render Problem 2
-        working-directory: .automation/hw2/work/IEE574_HW2_Julia
-        run: julia --project=. problem2_hyperplane.jl
-
-      - name: Render Problem 3
-        working-directory: .automation/hw2/work/IEE574_HW2_Julia
-        run: julia --project=. problem3_polyhedron.jl
-
-      - name: Render Problem 4
-        working-directory: .automation/hw2/work/IEE574_HW2_Julia
-        run: julia --project=. problem4_lp_geometry.jl
-
-      - name: Verify Problem 4 with JuMP and HiGHS
-        working-directory: .automation/hw2/work/IEE574_HW2_Julia
-        run: julia --project=. verify_problem4_jump.jl | tee verification.txt
-
-      - name: Audit outputs
-        working-directory: .automation/hw2/work/IEE574_HW2_Julia
+      - name: Run exact user code
         run: |
-          test -s figures/P2_hyperplane_halfspaces.pdf
-          test -s figures/P3_polyhedron_recession.pdf
-          test -s figures/P4_lp_geometry.pdf
-          sha256sum figures/*.pdf | tee figure_sha256.txt
-          ls -lh figures
+          julia --project=.automation/hw2/exact_env .automation/hw2/problem2_exact.jl
 
-      - name: Upload rendered figures
+      - name: Verify PDF exists
+        run: |
+          test -s problem2_S1_S2_graphpaper.pdf
+          sha256sum problem2_S1_S2_graphpaper.pdf | tee problem2_sha256.txt
+          ls -lh problem2_S1_S2_graphpaper.pdf
+
+      - name: Upload exact rendered PDF
         uses: actions/upload-artifact@v4
         with:
-          name: IEE574-HW2-Julia-Figures
+          name: IEE574-Problem2-Exact-CairoMakie
           path: |
-            .automation/hw2/work/IEE574_HW2_Julia/figures/*.pdf
-            .automation/hw2/work/IEE574_HW2_Julia/figures/*.png
-            .automation/hw2/work/IEE574_HW2_Julia/figures/*.svg
-            .automation/hw2/work/IEE574_HW2_Julia/verification.txt
-            .automation/hw2/work/IEE574_HW2_Julia/figure_sha256.txt
+            problem2_S1_S2_graphpaper.pdf
+            problem2_sha256.txt
           if-no-files-found: error
           retention-days: 7
