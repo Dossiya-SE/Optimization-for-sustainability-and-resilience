@@ -19,10 +19,11 @@ jobs:
         with:
           version: '1.12'
 
-      - name: Unpack Julia package
+      - name: Unpack and patch Julia package
         run: |
           mkdir -p .automation/hw2/work
           unzip -q .automation/hw2/IEE574_HW2_Julia.zip -d .automation/hw2/work
+          sed -i 's/\\operatorname{rec}(X)/\\mathrm{rec}(X)/g' .automation/hw2/work/IEE574_HW2_Julia/problem3_polyhedron.jl
           ls -R .automation/hw2/work
 
       - name: Install Julia dependencies
