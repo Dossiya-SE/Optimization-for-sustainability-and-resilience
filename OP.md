@@ -1,624 +1,939 @@
-# /op — Optimization Engineering Workflow
+# /op — Optimization Engineering Workflow v2.0
 
-> Canonical workflow for rigorous optimization problem solving in IEE 574 and related engineering optimization work.
+> Canonical protocol for rigorous optimization problem solving, mathematical geometry, engineering interpretation, scientific computing, and validated visualization.
 
 ## Invocation
 
 Use:
 
-```text
+~~~text
 /op
-```
+/op here
+/op <problem>
+/op <exercise>
+/op <model or file>
+~~~
 
-or
-
-```text
-/op <problem, exercise, model, file, or question>
-```
-
-The command means: **apply the full Optimization Engineering Workflow before accepting a result as complete**.
+The command means: do not jump to a solver, plot, or final answer. Construct the mathematical object first, prove what can be proved, verify it computationally, render what must be rendered, audit it, and freeze only a validated result.
 
 ---
 
-What we learned from Problems 2–4 is bigger than how to make a good figure. We developed a **repeatable optimization problem-solving method** in which mathematics is the authority, geometry explains the mathematics, engineering gives meaning to the variables and constraints, and computation verifies rather than invents the answer.
+# 1. Core doctrine
 
-I would formalize our method as:
+The permanent rule is:
 
-\`\`\`math
-\boxed{ \textbf{Optimization Engineering Workflow} }
-\`\`\`
+~~~math
+\boxed{\text{A scientific figure is not decoration. It is a graphical proof of the mathematics.}}
+~~~
 
-\`\`\`math
-\boxed{ \text{FORMULATE} \rightarrow \text{NORMALIZE} \rightarrow \text{CLASSIFY} \rightarrow \text{DERIVE} \rightarrow \text{VERIFY} \rightarrow \text{INTERPRET} \rightarrow \text{VISUALIZE} \rightarrow \text{COMPUTE} \rightarrow \text{AUDIT} \rightarrow \text{FREEZE} }
-\`\`\`
+The operational sequence is:
 
-## 1. The main lesson: never begin with the solver or the plot
+~~~text
+QUESTION
+→ FORMULATE
+→ NORMALIZE
+→ CLASSIFY
+→ DERIVE
+→ VERIFY
+→ CERTIFY
+→ INTERPRET
+→ DESIGN
+→ COMPUTE/CODE
+→ ASSERT
+→ RENDER
+→ AUDIT
+→ FREEZE
+~~~
 
-At the beginning, many difficulties came from trying to draw something before completely knowing what the mathematical objects were.
+For visualization specifically:
 
-The improved principle is
-
-\`\`\`math
-\boxed{ \text{Mathematics} \rightarrow \text{Geometry} \rightarrow \text{Engineering meaning} \rightarrow \text{Computation} }
-\`\`\`
-
-not
-
-\`\`\`math
-\text{code} \rightarrow \text{picture} \rightarrow \text{guess what it means}.
-\`\`\`
-
-For every future optimization exercise, the first question should be:
-
-\`\`\`math
-\boxed{\text{What mathematical object is this problem defining?}}
-\`\`\`
-
-A point? A line? A hyperplane? A half-space? A polyhedron? A cone? A feasible set? An objective contour? A direction? A basis? An extreme point? A redundant constraint?
-
-Until that is clear, we should not draw.
-
----
-
-# 2. Our three synchronized representations
-
-Every optimization problem should be solved simultaneously in three representations.
-
-| Representation | Question |
-| --- | --- |
-| **Mathematical** | What equations, inequalities, sets, functions, variables, parameters, and logical statements define the problem? |
-| **Geometric** | What do those objects look like in the relevant space? Which boundaries, intersections, directions, vertices, cones, and regions exist? |
-| **Engineering** | What physical, operational, economic, sustainability, or system meaning does each variable and constraint have? |
-
-Then computation becomes a fourth layer:
-
-\`\`\`math
-\boxed{ \text{Computation}=\text{verification and scaling layer} }
-\`\`\`
-
-rather than the source of the reasoning.
-
-For example, a constraint
-
-\`\`\`math
-5x_1+3x_2\le50
-\`\`\`
-
-should immediately be seen in four ways:
-
-\`\`\`math
+~~~math
 \boxed{
-\begin{array}{ll}
-\text{algebra} &: 5x_1+3x_2\le50,\\[1mm]
-\text{geometry} &: \text{a half-space},\\[1mm]
-\text{boundary} &: 5x_1+3x_2=50,\\[1mm]
-\text{engineering} &: \text{a limited resource/capacity relationship}.
-\end{array}}
-\`\`\`
+\text{mathematical object}
+\rightarrow
+\text{geometric role}
+\rightarrow
+\text{visual role}
+}
+~~~
 
-That should become automatic.
+Never reverse that order.
 
 ---
 
-# 3. Step 1 — FORMULATE exactly
+# 2. Four synchronized representations
 
-Before solving anything, create an authoritative mathematical statement.
+Every optimization problem should be understood in four synchronized layers.
 
-For a generic optimization problem:
+| Layer | Required question |
+|---|---|
+| Mathematics | What sets, variables, parameters, equations, inequalities, functions, and logical statements define the problem? |
+| Geometry | What boundaries, half-spaces, faces, vertices, directions, cones, contours, normals, and tangents exist? |
+| Engineering | What mechanism, unit, capacity, conservation law, policy, resource, service, or physical meaning does each object represent? |
+| Computation | What should be derived exactly, what should be checked numerically, and what should code be allowed to claim? |
 
-\`\`\`math
+Computation is a verification and scaling layer. It must not silently become the source of mathematical truth.
+
+---
+
+# 3. Start from the exact question
+
+Before modeling, write the exact question the exercise is asking.
+
+Examples:
+
+- characterize a feasible set;
+- determine whether a polyhedron is bounded;
+- find extreme points;
+- identify active or redundant constraints;
+- derive recession directions;
+- optimize a linear objective;
+- enumerate basic solutions;
+- connect basic feasible solutions to extreme points.
+
+Do not start with software.
+
+---
+
+# 4. Formulate exactly
+
+A generic optimization problem is written as
+
+~~~math
 \boxed{
 \begin{aligned}
-\max/\min\quad & f(x)\\
+\min/\max\quad & f(x)\\
 \text{s.t.}\quad
 & g_i(x)\le0,\qquad i\in\mathcal I,\\
 & h_j(x)=0,\qquad j\in\mathcal J,\\
 & x\in\mathcal X.
 \end{aligned}}
-\`\`\`
+~~~
 
-Then classify every symbol.
+Declare explicitly:
 
-| Symbol | Role |
-| --- | --- |
-| \(x\) | decision variable |
-| \(c,a_i,b_i\) | known parameters |
-| \(f(x)\) | objective |
-| \(g_i(x)\le0\) | inequality constraint |
-| \(h_j(x)=0\) | equality constraint |
-| \(\mathcal X\) | domain |
-| \(i,j\) | indices |
+1. sets and indices;
+2. parameters/input data;
+3. decision variables;
+4. objective;
+5. constraints;
+6. domains;
+7. units when supplied;
+8. assumptions;
+9. requested outputs.
 
-This prevents one of the most common optimization mistakes:
-
-\`\`\`math
-\boxed{\text{parameter}\neq\text{decision variable}.}
-\`\`\`
+Keep parameters and decision variables conceptually separate.
 
 ---
 
-# 4. Step 2 — NORMALIZE the mathematics
+# 5. Normalize without losing the source form
 
-Rewrite constraints into forms that expose their structure.
+Keep the original formulation as authority, then derive equivalent forms for different purposes.
 
 For example,
 
-\`\`\`math
-x_1-2x_2\ge-6
-\`\`\`
+~~~math
+a^\top x\le b
+~~~
 
-can be represented equivalently as
+is useful for optimization and polyhedral reasoning, whereas in 2-D
 
-\`\`\`math
--x_1+2x_2\le6
-\`\`\`
+~~~math
+x_2=mx_1+\beta
+~~~
 
-or, for geometric drawing,
+may be useful for geometry.
 
-\`\`\`math
-x_2\le\frac12x_1+3.
-\`\`\`
-
-These forms serve different purposes.
-
-\`\`\`math
-\boxed{
-\begin{array}{lll}
-a^\top x\le b &\rightarrow& \text{optimization/standard form},\\
-x_2=mx_1+b &\rightarrow& \text{2-D geometric interpretation}.
-\end{array}}
-\`\`\`
-
-Do not confuse equivalence with purpose: retain the original mathematical constraint while deriving whatever representation makes the geometry easier to understand.
+Equivalent forms are tools, not replacements for the original model.
 
 ---
 
-# 5. Step 3 — CLASSIFY the mathematical objects
+# 6. Classify the mathematical ontology
 
-For each element, explicitly decide:
+Before plotting or coding, classify every object.
 
-\`\`\`math
-\boxed{ \text{What is it?} }
-\`\`\`
+| Mathematical object | Meaning |
+|---|---|
+| \(a^\top x=b\) | hyperplane / equality boundary |
+| \(a^\top x\le b\) | half-space |
+| \(X=\{x:Ax\le b\}\) | polyhedron |
+| \(x^*\) | point / candidate or optimum |
+| \(d\) | direction |
+| \(\operatorname{rec}(X)\) | recession cone |
+| \(c\) | objective coefficient / gradient |
+| \(c^\top x=k\) | objective level hyperplane |
+| basis \(B\) | selected independent columns |
+| BFS | basic solution satisfying feasibility |
 
-Examples:
+Always distinguish:
 
-\`\`\`math
-\begin{array}{rcl}
-a^\top x=b &:& \text{hyperplane},\\
-a^\top x\le b &:& \text{half-space},\\
-X=\{x:Ax\le b\} &:& \text{polyhedron},\\
-x^* &:& \text{point},\\
-d &:& \text{direction},\\
-c &:& \text{objective coefficient/gradient},\\
-\operatorname{rec}(X) &:& \text{recession cone}.
-\end{array}
-\`\`\`
-
-Critically:
-
-\`\`\`math
-\boxed{ \text{constraint} \neq \text{constraint boundary} \neq \text{active feasible facet} }
-\`\`\`
-
-A redundant constraint can belong to the mathematical model while contributing no feasible edge.
-
----
-
-# 6. Step 4 — DERIVE geometry analytically
-
-Never estimate intersections visually.
-
-For every candidate vertex, solve the corresponding active equalities exactly. If
-
-\`\`\`math
-a_i^\top x=b_i
-\`\`\`
-
-and
-
-\`\`\`math
-a_j^\top x=b_j
-\`\`\`
-
-are potentially active, solve
-
-\`\`\`math
-\begin{bmatrix}
-a_i^\top\\
-a_j^\top
-\end{bmatrix}x
-=
-\begin{bmatrix}
-b_i\\
-b_j
-\end{bmatrix}.
-\`\`\`
-
-Then verify the resulting point against all constraints.
-
-\`\`\`math
+~~~math
 \boxed{
-\text{intersection}
-\rightarrow
-\text{candidate point}
-\rightarrow
-\text{feasibility test}
-\rightarrow
-\text{vertex/nonvertex classification}.
+\text{constraint}
+\neq
+\text{constraint boundary}
+\neq
+\text{active constraint}
+\neq
+\text{active feasible facet}
 }
-\`\`\`
+~~~
+
+A constraint can be tight at one point without defining a facet.
 
 ---
 
-# 7. Step 5 — determine boundedness and recession structure
+# 7. Never confuse four geometries
 
-\`\`\`math
-\boxed{\text{A plotting window must never be mistaken for a mathematical boundary}.}
-\`\`\`
+Keep these separate:
 
-If
+~~~math
+\boxed{
+\text{model geometry}
+\neq
+\text{feasible-set geometry}
+\neq
+\text{objective geometry}
+\neq
+\text{display geometry}
+}
+~~~
 
-\`\`\`math
-X=\{x:Ax\le b\},
-\`\`\`
+- A full constraint line/hyperplane belongs to model geometry.
+- Only part of it may belong to the feasible boundary.
+- Objective contours are not constraints.
+- A plot-box edge is not a mathematical boundary.
 
-then
-
-\`\`\`math
-\operatorname{rec}(X)=\{d:Ad\le0\}.
-\`\`\`
-
-The set is bounded exactly when
-
-\`\`\`math
-\operatorname{rec}(X)=\{0\}.
-\`\`\`
-
-For unboundedness, prove it with a nonzero direction \(d\) satisfying
-
-\`\`\`math
-x+\lambda d\in X \qquad \forall\lambda\ge0.
-\`\`\`
+This distinction is mandatory for unbounded sets and redundant constraints.
 
 ---
 
-# 8. Step 6 — analyze the objective geometrically
+# 8. Derive geometry analytically
 
-For a linear objective
+Never eyeball intersections.
 
-\`\`\`math
-Z=c^\top x,
-\`\`\`
+If two boundaries are potentially active,
 
-the level sets are
+~~~math
+a_i^\top x=b_i,\qquad a_j^\top x=b_j,
+~~~
 
-\`\`\`math
-\boxed{c^\top x=k}.
-\`\`\`
-
-The vector
-
-\`\`\`math
-\boxed{c=\nabla Z}
-\`\`\`
-
-is normal to every objective contour.
-
-For any tangent direction \(t\),
-
-\`\`\`math
-\boxed{c^\top t=0}.
-\`\`\`
-
-For maximization, increasing objective values occur in the direction of \(c\); for minimization, in the direction of \(-c\).
-
-\`\`\`math
-\boxed{\text{move an objective hyperplane parallel to itself in the improvement direction}.}
-\`\`\`
-
----
-
-# 9. Step 7 — solve, then produce an optimality certificate
-
-Do not stop at
-
-\`\`\`math
-x^*=\text{some point}.
-\`\`\`
-
-For small LPs, evaluate the objective at all extreme points:
-
-\`\`\`math
-Z(v_1),Z(v_2),\ldots,Z(v_m).
-\`\`\`
-
-Where useful, derive a stronger certificate. If
-
-\`\`\`math
-c=\lambda_1a_1+\lambda_2a_2,\qquad \lambda_i\ge0,
-\`\`\`
-
-using normals of active constraints at \(x^*\), then those constraints can establish a direct bound on the objective.
-
-This connects geometric LP reasoning to:
-
-\`\`\`math
-\boxed{\text{duality}+\text{KKT conditions}+\text{normal cones}+\text{optimality certificates}.}
-\`\`\`
-
----
-
-# 10. Step 8 — translate the mathematics into engineering meaning
-
-Every constraint should answer:
-
-\`\`\`math
-\boxed{\text{What engineering mechanism produces this equation or inequality?}}
-\`\`\`
-
-Examples:
-
-\`\`\`math
-\begin{array}{lll}
-\sum_i x_i\le C &\rightarrow& \text{capacity},\\[1mm]
-\sum_i x_i=d &\rightarrow& \text{balance/conservation},\\[1mm]
-x_i\le My_i &\rightarrow& \text{logical linkage},\\[1mm]
-x_i\ge0 &\rightarrow& \text{physical/domain restriction},\\[1mm]
-Ax=b &\rightarrow& \text{flow/mass/energy conservation}.
-\end{array}
-\`\`\`
-
-For sustainability and infrastructure work, classify mechanisms such as capacity, energy balance, transport flow, emissions, budget, reliability, service, resilience, and policy.
-
----
-
-# 11. Step 9 — design the figure from ontology
-
-Do not move labels until they merely “look acceptable.”
+solve them exactly, then test the candidate against every constraint.
 
 Use:
 
-\`\`\`math
-\boxed{\text{mathematical object}\rightarrow\text{geometric role}\rightarrow\text{visual grammar}.}
-\`\`\`
+~~~text
+intersection
+→ candidate
+→ feasibility test
+→ vertex/nonvertex classification
+~~~
 
-| Mathematical object | Visual rule |
-| --- | --- |
-| feasible region | light transparent fill |
-| full constraint hyperplane | thin/faint line |
-| active feasible facet | stronger segment |
-| redundant constraint | muted/dashed |
-| objective contour | distinct contour family |
-| point | marker |
-| optimal point | stronger unique marker |
-| vector | arrow |
-| coordinate label | same color as point |
-| line equation | same color as line |
-| vector equation | same color as vector |
-
-\`\`\`math
-\boxed{\text{same object}\Rightarrow\text{same color + same direction + spatial proximity}.}
-\`\`\`
+For larger models, programmatically enumerate or verify candidate intersections.
 
 ---
 
-# 12. Label positions should also be mathematical
+# 9. Use exact arithmetic before floating graphics
 
-For a line
+When coefficients are rational, prefer exact arithmetic for mathematical claims.
 
-\`\`\`math
-a^\top x=b,
-\`\`\`
+Julia example:
 
-choose an anchor \(p\) satisfying
+~~~julia
+vstar_exact = (26//5, 8//1)
+Z_exact(v) = 2*v[1] + 5*v[2]
+@assert Z_exact(vstar_exact) == 252//5
+~~~
 
-\`\`\`math
-a^\top p=b.
-\`\`\`
+Convert to floating-point only when required for rendering or numerical libraries.
 
-Then offset the label in the normal direction:
-
-\`\`\`math
+~~~math
 \boxed{
-p_{\text{label}}
-=
-p+\varepsilon\frac{a}{\|a\|}.
+\text{exact mathematics}
+\rightarrow
+\text{floating computation/visualization}
 }
-\`\`\`
+~~~
 
-For a vector \(v\), use its midpoint
-
-\`\`\`math
-m=p+\frac12v
-\`\`\`
-
-and a perpendicular offset:
-
-\`\`\`math
-\boxed{
-m_{\text{label}}
-=
-m+\varepsilon\frac{(-v_2,v_1)}{\|v\|}.
-}
-\`\`\`
+Never reverse that relationship.
 
 ---
 
-# 13. Step 10 — computation must contain assertions
+# 10. Determine activity, redundancy, and degeneracy
 
-Julia code must act as a verification program, not only a plotting program.
+For every inequality, classify whether it is:
+
+- inactive;
+- active at a point;
+- facet-defining;
+- redundant;
+- implied by other constraints.
+
+Prove redundancy whenever it matters.
+
+For standard-form LPs, connect geometry to basis structure:
+
+~~~math
+\boxed{
+\text{extreme point}
+\longleftrightarrow
+\text{basic feasible solution}
+}
+~~~
+
+If multiple bases produce the same BFS, identify degeneracy explicitly.
+
+---
+
+# 11. Determine boundedness and recession structure
+
+For
+
+~~~math
+X=\{x:Ax\le b\},
+~~~
+
+use
+
+~~~math
+\operatorname{rec}(X)=\{d:Ad\le0\}.
+~~~
+
+A bounded polyhedron satisfies
+
+~~~math
+\operatorname{rec}(X)=\{0\}.
+~~~
+
+For unboundedness, exhibit a nonzero \(d\) such that
+
+~~~math
+x+\lambda d\in X
+\qquad
+\forall\lambda\ge0.
+~~~
+
+A clipped plotting window must never be treated as a mathematical boundary.
+
+---
+
+# 12. Analyze objective geometry
+
+For a linear objective
+
+~~~math
+Z=c^\top x,
+~~~
+
+the level sets are
+
+~~~math
+c^\top x=k.
+~~~
+
+The gradient/objective vector is
+
+~~~math
+\boxed{c=\nabla Z}
+~~~
+
+and is normal to every level hyperplane.
+
+For a tangent \(t\),
+
+~~~math
+\boxed{c^\top t=0.}
+~~~
+
+For maximization, improvement is in direction \(+c\); for minimization, in direction \(-c\).
+
+Objective contours shown in a figure should have meaningful levels, preferably tied to important vertices or candidate solutions.
+
+---
+
+# 13. Prove optimality; do not merely identify an optimum
+
+For small LPs, compare objective values at all extreme points.
+
+Then seek a stronger certificate when appropriate:
+
+- active-normal conic combination;
+- dual feasible solution;
+- complementary slackness;
+- KKT conditions;
+- convexity/global optimality arguments.
+
+A result is stronger when it answers both:
+
+~~~text
+What is the optimum?
+Why can no feasible point do better?
+~~~
+
+---
+
+# 14. Translate mathematics into engineering meaning
+
+For every decision variable and constraint, ask:
+
+~~~math
+\boxed{\text{What engineering mechanism does this object represent?}}
+~~~
 
 Examples:
 
-\`\`\`julia
-@assert feasible(v1)
-@assert feasible(v2)
-@assert isapprox(dot(c, tangent), 0.0)
-@assert objective(xstar) ≥ objective(v1)
-@assert isapprox(A[i,:]' * xstar, b[i])
-\`\`\`
+~~~math
+\sum_i x_i\le C
+\rightarrow
+\text{capacity},
+\qquad
+Ax=b
+\rightarrow
+\text{conservation/balance},
+~~~
 
-\`\`\`math
-\boxed{\text{If an essential mathematical property fails, the figure must not render silently.}}
-\`\`\`
+~~~math
+x_i\le My_i
+\rightarrow
+\text{logical linkage},
+\qquad
+x_i\ge0
+\rightarrow
+\text{domain/physical restriction}.
+~~~
+
+Do not invent units or physical meaning if the source problem does not provide them. State the interpretation boundary explicitly.
 
 ---
 
-# 14. Step 11 — separate analytical truth from numerical verification
+# 15. Visual ontology
 
-For small homework exercises:
+A scientific optimization figure uses visual grammar, not decorative styling.
 
-\`\`\`math
+| Mathematical role | Recommended visual grammar |
+|---|---|
+| complete constraint boundary | thin/faint |
+| active feasible facet | thick/solid |
+| redundant constraint | faint + dashed + direct label |
+| feasible region | light transparent fill |
+| vertex | point + coordinate |
+| optimal vertex | stronger marker |
+| hyperplane | strong line |
+| half-space | light region fill |
+| direction vector | arrow |
+| recession direction | ray |
+| recession cone | separate direction-space panel when useful |
+| objective contour | parallel dashed line family |
+| gradient \(c\) | arrow normal to contours |
+| plot boundary | no mathematical visual meaning |
+
+Use:
+
+~~~math
+\boxed{
+\text{same object}
+\Rightarrow
+\text{same color + same direction + spatial proximity}
+}
+~~~
+
+---
+
+# 16. Use redundant visual encoding
+
+Do not rely on color alone.
+
+Prefer:
+
+~~~math
+\boxed{
+\text{color}
++
+\text{line style}
++
+\text{thickness}
++
+\text{marker}
++
+\text{direct label}
+}
+~~~
+
+A mature visual should remain interpretable in grayscale and under common color-vision differences.
+
+Do not reuse one color for unrelated semantic roles.
+
+---
+
+# 17. Labels must be geometrically derived
+
+For a line \(a^\top x=b\), choose an anchor \(p\) on the line and offset along the normal:
+
+~~~math
+\boxed{
+p_{\mathrm{label}}
+=
+p+\varepsilon\frac{a}{\|a\|}
+}
+~~~
+
+For a vector \(v\) starting at \(p\), place the label near an interior point and offset perpendicularly:
+
+~~~math
+\boxed{
+m_{\mathrm{label}}
+=
+p+\alpha v
++
+\varepsilon
+\frac{(-v_2,v_1)}{\|v\|}
+}
+~~~
+
+For direct ownership:
+
+~~~math
+\boxed{
+\text{line-label rotation}=\text{line direction}
+}
+~~~
+
+and
+
+~~~math
+\boxed{
+\text{vector-label rotation}=\text{vector direction}.
+}
+~~~
+
+Do not use manual coordinate guesswork when a label position can be derived geometrically.
+
+---
+
+# 18. Equal data scaling is mandatory for geometric claims
+
+For 2-D mathematical geometry in CairoMakie:
+
+~~~julia
+aspect = DataAspect()
+~~~
+
+should be the default.
+
+Without equal data scaling, slopes, perpendicularity, angles, and vector direction can be visually misleading even when the equations are correct.
+
+---
+
+# 19. Engineering graph-paper standard
+
+Default when useful:
+
+~~~math
+\boxed{
+\text{major grid}=1,
+\qquad
+\text{minor grid}=0.2.
+}
+~~~
+
+Maintain the hierarchy:
+
+~~~text
+minor grid
+< major grid
+< fills
+< axes
+< mathematical boundaries
+< critical annotations
+~~~
+
+The grid exists for verification, not decoration.
+
+---
+
+# 20. One panel should answer one mathematical question
+
+Before creating a panel, write the question it answers.
+
+Examples:
+
+- What is the feasible set?
+- Which constraints actually shape feasibility?
+- In which directions can the system move indefinitely?
+- Why is this vertex optimal?
+- How do basic feasible solutions map to extreme points?
+
+If a panel cannot answer a precise mathematical question, reconsider whether it belongs.
+
+Separate spaces when their ontology differs, such as \(x\)-space and \(d\)-space.
+
+---
+
+# 21. Julia code architecture
+
+For serious work, separate mathematical layers from plotting layers.
+
+Recommended structure:
+
+~~~julia
+using CairoMakie
+using LaTeXStrings
+using LinearAlgebra
+
+# 1. exact mathematical data
+# 2. parameters / constants
+# 3. mathematical functions
+# 4. feasibility predicate
+# 5. exact vertices / directions / bases
+# 6. mathematical assertions
+# 7. visual constants
+# 8. figure and axes
+# 9. fills
+# 10. full constraint boundaries
+# 11. active facets
+# 12. points / vectors / contours
+# 13. labels
+# 14. final visual checks
+# 15. export
+~~~
+
+When multiple problems are combined, isolate them in modules to prevent namespace collisions.
+
+---
+
+# 22. Define one feasibility predicate
+
+Every computational representation should use a single source of truth.
+
+Example:
+
+~~~julia
+function feasible(x; atol=1e-10)
+    return (
+        g1(x) <= atol &&
+        g2(x) <= atol &&
+        x[1] >= -atol &&
+        x[2] >= -atol
+    )
+end
+~~~
+
+Use it for candidate vertices, recession-ray tests, solver results, and assertions.
+
+---
+
+# 23. Assertions are scientific gates
+
+Assertions should verify mathematical claims that could be defended on paper.
+
+Good examples:
+
+~~~julia
+@assert feasible(v)
+@assert isapprox(dot(normal, tangent), 0.0; atol=1e-12)
+@assert objective(xstar) == 252//5
+@assert isapprox(A[i,:]' * xstar, b[i]; atol=1e-12)
+~~~
+
+For unbounded rays:
+
+~~~julia
+for λ in (0, 1, 10, 100)
+    @assert feasible(x0 + λ*d)
+end
+~~~
+
+Avoid assertions that only verify arbitrary plotting coordinates unless they encode a true mathematical claim.
+
+~~~math
+\boxed{
+\text{If the code cannot verify a mathematical claim, the figure should not claim it.}
+}
+~~~
+
+---
+
+# 24. Solver role
+
+For small homework problems:
+
+~~~math
 \boxed{\text{derive first, solver second}.}
-\`\`\`
+~~~
 
-Use analytical derivation plus independent numerical verification.
+Use JuMP/HiGHS or another solver as independent verification, not as a substitute for derivation.
 
-For large engineering models, computational solution becomes operationally central, but the model still needs to be understood before solver output is trusted.
-
----
-
-# 15. Step 12 — rendering is part of verification
-
-A program can execute successfully while its figure remains scientifically poor.
-
-\`\`\`math
-\boxed{\text{code PASS}\neq\text{figure PASS}.}
-\`\`\`
-
-Audit the rendering for wrong-side shading, false boundaries, incorrect scaling, label collisions, wrong coordinates, misleading colors, wrong arrows, and clipping.
+For large models, solvers become operationally central, but the model, assumptions, units, and validation logic must still be understood before solver output is trusted.
 
 ---
 
-# 16. Four independent PASS gates
+# 25. Separate verification from validation
 
-| Gate | Required question | Typical failure |
-| --- | --- | --- |
-| **G1 Mathematical** | Are formulation and derivations correct? | wrong inequality orientation |
-| **G2 Geometric** | Does the geometry exactly represent the mathematics? | fake boundary on an unbounded set |
-| **G3 Engineering** | Is every variable/constraint/object interpretable? | meaningless coefficient or constraint |
-| **G4 Computational/visual** | Does code reproduce the mathematics clearly? | solver/plot works but labels or facets are wrong |
+Verification asks:
 
-\`\`\`math
-\boxed{PASS=G_1\land G_2\land G_3\land G_4.}
-\`\`\`
+~~~math
+\boxed{\text{Did we solve/implement the equations correctly?}}
+~~~
 
-No single gate can compensate for failure of another.
+Validation asks:
+
+~~~math
+\boxed{\text{Do these equations represent the intended engineering problem?}}
+~~~
+
+An implementation can be numerically correct and still model the wrong real system.
 
 ---
 
-# 17. Standard pre-code worksheet
+# 26. Rendering is a separate gate
+
+Code execution is not visual validation.
+
+~~~math
+\boxed{
+\text{code PASS}
+\neq
+\text{figure PASS}.
+}
+~~~
+
+Assertions can verify mathematics but cannot prove:
+
+- labels do not collide;
+- the hierarchy is readable;
+- the page is not clipped;
+- line styles are distinguishable;
+- equations remain legible;
+- the visual communicates the intended ontology.
+
+The artifact audit cycle is:
+
+~~~text
+Julia
+→ PDF
+→ render PDF
+→ inspect
+→ correct
+~~~
+
+The exported PDF is the submission authority, not the interactive plotting window.
+
+---
+
+# 27. Determinism and reproducibility
+
+Scientific code should render the same result repeatedly.
+
+Prefer explicit:
+
+- axis limits;
+- ticks;
+- colors;
+- line styles;
+- label anchors;
+- package versions;
+- output names.
+
+Avoid uncontrolled randomness, arbitrary automatic colors, and non-deterministic placement.
+
+For serious Julia work, use a project environment with Project.toml and Manifest.toml.
+
+Once an assignment environment is working, freeze package versions until submission.
+
+---
+
+# 28. Error taxonomy
+
+Classify failures before fixing them.
+
+| Failure class | Meaning |
+|---|---|
+| Syntax error | Julia code is not parsable |
+| Package/environment error | dependency missing or incompatible |
+| API error | code uses an unsupported/changed interface |
+| Mathematical assertion failure | derivation/model claim is inconsistent |
+| Numerical failure | solver/tolerance/conditioning issue |
+| Visual design failure | rendered artifact is misleading or unreadable |
+
+An API error is not evidence that the mathematics is wrong.
+
+A failing mathematical assertion is useful: it blocks incorrect output.
+
+---
+
+# 29. Configuration management and freezing
+
+Once an artifact passes, do not casually edit it.
+
+Use versioned validated names, for example:
+
+~~~text
+P4_LP_Geometry_Optimality_v1.0_VALIDATED.pdf
+P4_LP_Geometry_Optimality_v1.0.jl
+~~~
+
+Keep the exact source that generated the validated artifact.
+
+Any later edit reopens the relevant audit gates.
+
+---
+
+# 30. PASS gates
+
+The top-level compatibility gates remain:
+
+| Gate | Question |
+|---|---|
+| G1 Mathematical | Are formulation, derivations, classifications, and certificates correct? |
+| G2 Geometric | Does the geometry exactly represent the mathematical objects and relationships? |
+| G3 Engineering | Are mechanisms, assumptions, units, scope, and interpretation valid? |
+| G4 Computational / Artifact | Do code, assertions, numerical checks, rendering, and reproducibility support the claims? |
+
+G4 contains three mandatory subgates when applicable:
+
+~~~text
+G4a Computational verification
+G4b Visual/rendered-artifact verification
+G4c Reproducibility/configuration control
+~~~
+
+A full pass requires:
+
+~~~math
+\boxed{
+\mathrm{FULL\ PASS}
+=
+G_1\land G_2\land G_3\land G_{4a}\land G_{4b}\land G_{4c}.
+}
+~~~
+
+If a gate is genuinely not applicable, mark it N/A with a reason rather than silently skipping it.
+
+---
+
+# 31. Status vocabulary
+
+Use only explicit states:
+
+- FULL PASS — all applicable gates completed and passed;
+- MATHEMATICAL PASS — mathematics passed but downstream gates remain;
+- GEOMETRIC PASS — geometry verified but downstream gates remain;
+- FIX REQUIRED — a known correction is needed;
+- BLOCKED — missing information/tool/data prevents completion;
+- N/A — a gate does not apply, with reason.
+
+Never call something FULL PASS merely because code executed.
+
+---
+
+# 32. Default /op output
+
+For each problem, return or build the following, omitting only genuinely irrelevant items:
+
+1. exact question;
+2. source/authority statement;
+3. sets, indices, parameters, variables, domains, units;
+4. assumptions and scope boundaries;
+5. authoritative formulation;
+6. normalized equivalent forms;
+7. mathematical-object ontology;
+8. active/inactive/redundant classification;
+9. exact geometric derivation;
+10. feasibility and boundedness analysis;
+11. recession directions/cone when applicable;
+12. objective geometry;
+13. optimum;
+14. optimality certificate;
+15. standard-form / basis / BFS analysis when applicable;
+16. engineering interpretation;
+17. visual questions and panel architecture;
+18. semantic visual grammar;
+19. exact arithmetic plan;
+20. computational implementation plan;
+21. mathematical assertions;
+22. solver verification when useful;
+23. rendered-artifact audit;
+24. reproducibility/environment audit;
+25. gate table;
+26. explicit final status.
+
+---
+
+# 33. Standard pre-code worksheet
 
 Before coding, answer:
 
 | Question | Required answer |
-| --- | --- |
-| **Decision variables?** | symbols, units, domains |
-| **Parameters?** | values, units, source |
-| **Objective?** | mathematical form + engineering meaning |
-| **Constraints?** | mathematical form + mechanism |
-| **Constraint type?** | equality / inequality / bound / linkage |
-| **Geometric object?** | line / half-space / hyperplane / cone / polyhedron |
-| **Intersections?** | derive exactly |
-| **Feasible points?** | verify against every constraint |
-| **Extreme points?** | derive and classify |
-| **Redundant constraints?** | prove |
-| **Bounded?** | prove or derive recession directions |
-| **Objective contours?** | derive slope/normal |
-| **Improvement direction?** | derive from \(c\) |
-| **Optimum?** | derive |
-| **Optimality certificate?** | vertex comparison / normal cone / dual |
-| **Engineering meaning?** | explain each result |
-| **Visual ontology?** | assign graphical representation |
-| **Assertions?** | encode mathematical checks |
-| **Solver verification?** | independent numerical check |
-| **Rendered audit?** | inspect final figure |
+|---|---|
+| Exact question? | what must be proved/computed/shown |
+| Source authority? | statement/file/section defining the problem |
+| Decision variables? | symbols, domains, units |
+| Parameters? | values, units, source |
+| Assumptions? | mathematical and engineering assumptions |
+| Objective? | form + meaning |
+| Constraints? | form + mechanism |
+| Constraint type? | equality / inequality / bound / linkage |
+| Geometric object? | hyperplane / half-space / polyhedron / cone / etc. |
+| Active set? | derive |
+| Redundant constraints? | prove |
+| Vertices/intersections? | derive exactly |
+| Bounded? | prove |
+| Recession structure? | derive if relevant |
+| Objective contours? | derive |
+| Improvement direction? | derive |
+| Optimum? | derive |
+| Certificate? | extreme-point / normal cone / dual / KKT |
+| Standard form/bases? | derive if required |
+| Engineering meaning? | interpret without inventing unsupported units |
+| Visual ontology? | define object-to-style mapping |
+| Exact arithmetic? | identify rational/symbolic quantities |
+| Assertions? | map claims to tests |
+| Solver check? | independent verification |
+| PDF audit? | inspect actual export |
+| Reproducibility? | environment/version/output traceability |
 
 ---
 
-# 18. Higher-dimensional extension
+# 34. Six-question engineering habit
 
-The method survives beyond two dimensions.
+For every important equation, ask:
 
-A line becomes a hyperplane:
-
-\`\`\`math
-a^\top x=b.
-\`\`\`
-
-A polygon becomes a polyhedron:
-
-\`\`\`math
-P=\{x:Ax\le b\}.
-\`\`\`
-
-A 2-D objective contour becomes a high-dimensional level hyperplane:
-
-\`\`\`math
-c^\top x=k.
-\`\`\`
-
-Extreme rays, active facets, normal vectors, optimality certificates, and recession analysis retain the same mathematical meaning.
-
----
-
-# 19. Six-question engineering habit
-
-For every important equation ask:
-
-\`\`\`math
+~~~math
 \boxed{
 \begin{array}{ll}
 1.&\text{What is defined?}\\
 2.&\text{Why does it have this form?}\\
 3.&\text{What geometry does it create?}\\
 4.&\text{What engineering mechanism does it represent?}\\
-5.&\text{How can I verify it?}\\
-6.&\text{When would this statement no longer be valid?}
+5.&\text{How can it be verified?}\\
+6.&\text{Where does its validity end?}
 \end{array}}
-\`\`\`
+~~~
 
 ---
 
-# 20. Final optimization-solving architecture
+# 35. Compact master standard
 
-\`\`\`math
-\boxed{
-\begin{aligned}
-\textbf{Phase I — Mathematical formulation}\\
-\text{words}
-&\rightarrow
-\text{sets, variables, parameters, objective, constraints}
-\\[2mm]
-\textbf{Phase II — Structural analysis}\\
-&\rightarrow
-\text{normalization, redundancy, activity, boundedness}
-\\[2mm]
-\textbf{Phase III — Geometry}\\
-&\rightarrow
-\text{boundaries, feasible set, vertices, directions, contours}
-\\[2mm]
-\textbf{Phase IV — Optimization}\\
-&\rightarrow
-\text{improvement direction, optimum, certificate}
-\\[2mm]
-\textbf{Phase V — Engineering interpretation}\\
-&\rightarrow
-\text{physical meaning, units, mechanisms, trade-offs}
-\\[2mm]
-\textbf{Phase VI — Computational verification}\\
-&\rightarrow
-\text{Julia assertions + solver}
-\\[2mm]
-\textbf{Phase VII — Scientific visualization}\\
-&\rightarrow
-\text{ontology-driven figure}
-\\[2mm]
-\textbf{Phase VIII — Audit and freeze}\\
-&\rightarrow
-\text{mathematical + geometric + engineering + visual PASS}.
-\end{aligned}}
-\`\`\`
+For all future optimization, sustainability, resilience, and thesis visualization work:
 
-The objective is not merely to draw optimization problems. It is to **construct, interrogate, prove, interpret, compute, and communicate optimization models**.
+~~~text
+QUESTION FIRST
+↓
+MATHEMATICS FIRST
+↓
+ONTOLOGY SECOND
+↓
+GEOMETRY THIRD
+↓
+ENGINEERING MEANING
+↓
+VISUAL DESIGN AFTER PROOF
+↓
+CODE WITH ASSERTIONS
+↓
+PDF BEFORE PASS
+↓
+FREEZE AFTER VALIDATION
+~~~
+
+The objective of /op is not merely to solve an exercise. It is to construct, interrogate, prove, interpret, compute, validate, and communicate an optimization model without allowing plotting or software to redefine the mathematics.
