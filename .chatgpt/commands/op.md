@@ -1,88 +1,115 @@
-# /op command
+# /op command — v2.0
 
 ## Purpose
 
-`/op` invokes the repository's canonical **Optimization Engineering Workflow**.
-
-Canonical authority:
-
-```text
-/OP.md
-```
+/op invokes the repository's canonical Optimization Engineering Workflow v2.0 in /OP.md.
 
 ## Syntax
 
-```text
+~~~text
 /op
+/op here
 /op <problem>
 /op <exercise number>
-/op <uploaded file or model>
-/op here
-```
+/op <model, file, or question>
+~~~
 
 ## Required execution sequence
 
-When `/op` is invoked, apply this sequence unless a mathematically necessary step is not applicable:
-
-```text
-FORMULATE
+~~~text
+QUESTION
+→ FORMULATE
 → NORMALIZE
 → CLASSIFY
 → DERIVE
 → VERIFY
+→ CERTIFY
 → INTERPRET
-→ VISUALIZE
-→ COMPUTE
+→ DESIGN
+→ COMPUTE/CODE
+→ ASSERT
+→ RENDER
 → AUDIT
 → FREEZE
-```
+~~~
+
+Skip a stage only when it is genuinely not applicable, and mark it N/A with a reason.
 
 ## Non-negotiable rules
 
-1. Mathematics is the authority; never infer truth from a plot or solver output alone.
-2. Separate parameters, decision variables, sets, objective, constraints, and indices.
-3. Separate a constraint from its boundary and from any active feasible facet.
-4. Derive intersections and vertices analytically before plotting.
-5. Prove redundancy, boundedness/unboundedness, and recession structure when relevant.
-6. For linear objectives, derive level sets, gradient, tangent direction, and improvement direction.
-7. Derive an optimality certificate whenever the exercise permits one.
-8. State the engineering meaning and units of variables, coefficients, objective, and constraints.
-9. Use ontology-driven visual encoding: same mathematical object → same color, direction, and spatial association.
-10. Put mathematical assertions into code before rendering.
-11. Use solvers as independent verification when feasible; do not substitute solver output for derivation in small exercises.
-12. Render and inspect figures before declaring PASS.
+1. Mathematics is the authority; never infer truth from a plot or solver alone.
+2. Preserve the source formulation and derive equivalent forms separately.
+3. Separate model geometry, feasible-set geometry, objective geometry, and display geometry.
+4. Separate a constraint, its equality boundary, active status, and facet-defining status.
+5. Use exact arithmetic before floating-point rendering when possible.
+6. Derive intersections/vertices analytically and verify them against every constraint.
+7. Prove redundancy, boundedness/unboundedness, recession structure, and degeneracy when relevant.
+8. For objectives, derive level sets, gradient, tangent relation, improvement direction, and a certificate of optimality when possible.
+9. Do not invent physical units or engineering semantics absent from the source.
+10. Use semantic visual encoding; do not rely on color alone.
+11. Derive label placement geometrically when possible.
+12. Use equal data scaling for geometric claims.
+13. Use one feasibility predicate as computational authority.
+14. Assertions must correspond to defensible mathematical claims.
+15. For small exercises, derive first and use solvers second.
+16. Separate verification from validation.
+17. Code execution is not figure validation.
+18. The final exported PDF is the visual authority.
+19. Keep outputs deterministic and environments reproducible.
+20. Classify failures as syntax, package, API, mathematical, numerical, or visual before fixing them.
+21. Freeze validated outputs with versioned source/artifact pairs.
 
 ## PASS gates
 
-```text
-G1 Mathematical
-G2 Geometric
-G3 Engineering
-G4 Computational / visual
-```
+~~~text
+G1  Mathematical
+G2  Geometric
+G3  Engineering
+G4a Computational verification
+G4b Rendered-artifact verification
+G4c Reproducibility/configuration
+~~~
 
-A solution may be frozen only when:
+~~~math
+\mathrm{FULL\ PASS}
+=
+G_1\land G_2\land G_3\land G_{4a}\land G_{4b}\land G_{4c}.
+~~~
 
-```math
-PASS = G_1 land G_2 land G_3 land G_4.
-```
+## Status vocabulary
 
-## Default output of /op
+Use:
 
-For each problem, return:
+- FULL PASS
+- MATHEMATICAL PASS
+- GEOMETRIC PASS
+- FIX REQUIRED
+- BLOCKED
+- N/A with reason
 
-1. authoritative formulation;
-2. symbol/variable/parameter audit;
-3. normalized mathematical forms;
-4. object ontology;
-5. exact derivation;
-6. feasibility / boundedness / redundancy analysis;
+Never declare FULL PASS before the relevant calculations, code execution, PDF rendering, visual inspection, and reproducibility checks have actually been completed.
+
+## Default /op output
+
+For the current problem, produce:
+
+1. exact question and source authority;
+2. variables/parameters/domains/units/assumptions;
+3. formulation and normalized forms;
+4. ontology and active/redundant classification;
+5. exact derivations;
+6. boundedness/recession analysis when relevant;
 7. objective geometry;
 8. optimum and certificate;
-9. engineering interpretation;
-10. visualization specification when useful;
-11. Julia assertions / solver verification when useful;
-12. four-gate audit;
-13. explicit `PASS`, `BLOCKED`, or `FIX REQUIRED` state.
+9. standard-form/basis/BFS analysis when relevant;
+10. engineering interpretation;
+11. visual/panel architecture when useful;
+12. exact arithmetic and computational plan;
+13. assertions;
+14. independent solver check when useful;
+15. PDF/render audit;
+16. reproducibility audit;
+17. gate table;
+18. explicit final state.
 
-Never declare `FULL PASS` before the relevant calculations, code execution, and rendered visual audit have actually been completed.
+Canonical authority: /OP.md.
