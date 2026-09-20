@@ -152,3 +152,25 @@ This is a **public** repository. During an active course, graded homework soluti
 **Phase 1:** deterministic operations-research foundations.  
 **Current research framework:** seven-stage P–T–I–O resilience-to-sustainability architecture.  
 **Next:** network flow, sustainability objectives, resilience metrics, coupled infrastructure models, and computational validation.
+
+
+---
+
+## `/op` — Optimization Engineering Workflow
+
+For rigorous optimization problem solving, use:
+
+```text
+/op
+/op here
+/op <problem or exercise>
+```
+
+The command invokes the canonical workflow in [`OP.md`](./OP.md):
+
+```text
+FORMULATE → NORMALIZE → CLASSIFY → DERIVE → VERIFY
+→ INTERPRET → VISUALIZE → COMPUTE → AUDIT → FREEZE
+```
+
+A problem is frozen only after the applicable Mathematical, Geometric, Engineering, and Computational/Visual gates pass.
