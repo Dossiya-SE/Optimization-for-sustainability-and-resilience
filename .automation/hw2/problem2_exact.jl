@@ -72,8 +72,10 @@ ax = Axis(
     leftspinecolor = INK,
     bottomspinecolor = INK,
 
-    leftspinewidth = 1.4,
-    bottomspinewidth = 1.4,
+    # Current Makie uses a common spine width.
+    # Since top/right spines are hidden, this sets the visible
+    # left and bottom spines to the intended 1.4 pt.
+    spinewidth = 1.4,
 
     xticksize = 6,
     yticksize = 6,
