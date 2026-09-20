@@ -1,0 +1,62 @@
+name: IEE574 HW2 Julia Render
+
+on:
+  push:
+    branches:
+      - automation/iee574-hw2-julia-render-20260920
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.12'
+
+      - name: Unpack Julia package
+        run: |
+          mkdir -p .automation/hw2/work
+          unzip -q .automation/hw2/IEE574_HW2_Julia.zip -d .automation/hw2/work
+          ls -R .automation/hw2/work
+
+      - name: Install Julia dependencies
+        working-directory: .automation/hw2/work/IEE574_HW2_Julia
+        run: julia setup.jl
+
+      - name: Render all figures
+        working-directory: .automation/hw2/work/IEE574_HW2_Julia
+        run: julia --project=. render_all.jl
+
+      - name: Verify Problem 4 with JuMP and HiGHS
+        working-directory: .automation/hw2/work/IEE574_HW2_Julia
+        run: julia --project=. verify_problem4_jump.jl | tee verification.txt
+
+      - name: Audit outputs
+        working-directory: .automation/hw2/work/IEE574_HW2_Julia
+        run: |
+          test -s figures/P2_hyperplane_halfspaces.pdf
+          test -s figures/P3_polyhedron_recession.pdf
+          test -s figures/P4_lp_geometry.pdf
+          pdfinfo figures/P2_hyperplane_halfspaces.pdf | head -20 || true
+          pdfinfo figures/P3_polyhedron_recession.pdf | head -20 || true
+          pdfinfo figures/P4_lp_geometry.pdf | head -20 || true
+          sha256sum figures/*.pdf | tee figure_sha256.txt
+
+      - name: Upload rendered figures
+        uses: actions/upload-artifact@v4
+        with:
+          name: IEE574-HW2-Julia-Figures
+          path: |
+            .automation/hw2/work/IEE574_HW2_Julia/figures/*.pdf
+            .automation/hw2/work/IEE574_HW2_Julia/figures/*.png
+            .automation/hw2/work/IEE574_HW2_Julia/figures/*.svg
+            .automation/hw2/work/IEE574_HW2_Julia/verification.txt
+            .automation/hw2/work/IEE574_HW2_Julia/figure_sha256.txt
+          if-no-files-found: error
+          retention-days: 7
