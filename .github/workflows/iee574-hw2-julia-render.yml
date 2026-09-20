@@ -1,4 +1,4 @@
-name: IEE574 Problem 2 Exact CairoMakie Render
+name: IEE574 Problem 2 Final CairoMakie Render
 
 on:
   push:
@@ -23,22 +23,26 @@ jobs:
         run: |
           julia -e 'using Pkg; Pkg.activate(".automation/hw2/exact_env"); Pkg.add(["CairoMakie","LaTeXStrings"]); Pkg.precompile()'
 
-      - name: Run exact user code
+      - name: Run final Problem 2 code
         run: |
           julia --project=.automation/hw2/exact_env .automation/hw2/problem2_exact.jl
 
-      - name: Verify PDF exists
+      - name: Verify outputs
         run: |
-          test -s problem2_S1_S2_graphpaper.pdf
-          sha256sum problem2_S1_S2_graphpaper.pdf | tee problem2_sha256.txt
-          ls -lh problem2_S1_S2_graphpaper.pdf
+          test -s IEE574_HW2_Problem2_complete.pdf
+          test -s IEE574_HW2_Problem2_complete.svg
+          test -s IEE574_HW2_Problem2_complete.png
+          sha256sum IEE574_HW2_Problem2_complete.pdf | tee problem2_sha256.txt
+          ls -lh IEE574_HW2_Problem2_complete.*
 
-      - name: Upload exact rendered PDF
+      - name: Upload final rendered files
         uses: actions/upload-artifact@v4
         with:
-          name: IEE574-Problem2-Exact-CairoMakie
+          name: IEE574-Problem2-Final-CairoMakie
           path: |
-            problem2_S1_S2_graphpaper.pdf
+            IEE574_HW2_Problem2_complete.pdf
+            IEE574_HW2_Problem2_complete.svg
+            IEE574_HW2_Problem2_complete.png
             problem2_sha256.txt
           if-no-files-found: error
           retention-days: 7
