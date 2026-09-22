@@ -1,0 +1,551 @@
+\documentclass[10pt,landscape]{article}
+\usepackage[letterpaper,landscape,margin=0.13in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,array,booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,angles,quotes}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor,microtype,adjustbox}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{1.5pt}
+\renewcommand{\arraystretch}{0.96}
+\setlength{\abovedisplayskip}{1.2pt}
+\setlength{\belowdisplayskip}{1.2pt}
+\setlength{\abovedisplayshortskip}{0.8pt}
+\setlength{\belowdisplayshortskip}{0.8pt}
+\color{black}
+
+% ONLY DRAWINGS USE COLOR.
+\definecolor{DrawBlue}{HTML}{245B8A}
+\definecolor{DrawBlueFill}{HTML}{DCEAF6}
+\definecolor{DrawTeal}{HTML}{2B7A78}
+\definecolor{DrawOrange}{HTML}{D97706}
+\definecolor{DrawOrangeFill}{HTML}{FCE8CF}
+\definecolor{DrawRed}{HTML}{C43D32}
+\definecolor{DrawGreen}{HTML}{2F7D32}
+\definecolor{DrawGreenFill}{HTML}{DDEFD9}
+\definecolor{DrawPurple}{HTML}{6C4DA3}
+\definecolor{AxisGray}{HTML}{444444}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\teach}{\textbf{PROFESSOR TEACHES - GENERAL}\quad}
+\newcommand{\recognize}{\textbf{RECOGNIZE}\quad}
+\newcommand{\procedure}{\textbf{GENERAL PROCEDURE}\quad}
+\newcommand{\example}{\textbf{STUDENT APPLICATION - EXAMPLE ONLY}\quad}
+\newcommand{\stuck}{\textbf{IF STUCK}\quad}
+
+\newtcolorbox{blk}[1]{
+  colback=white,colframe=black,coltitle=white,colbacktitle=black,
+  boxrule=.55pt,arc=.5pt,left=2.5pt,right=2.5pt,top=1.5pt,bottom=1.5pt,
+  title=\textbf{#1},fonttitle=\bfseries,before skip=.8pt,after skip=.8pt
+}
+
+\begin{document}
+\fontsize{5.20}{5.72}\selectfont
+
+\begin{center}
+{\fontsize{9.7}{10.1}\selectfont\bfseries IEE 574 EXAM 1 - GENERAL THEORY $\rightarrow$ RECOGNIZE $\rightarrow$ SOLVE $\rightarrow$ APPLY}\\[-1pt]
+{\scriptsize Professor sections work for unseen problems; Mock/Homework data are examples only. All text is black; only drawings use color.}
+\end{center}
+\vspace{-2pt}
+
+% =============================================================
+% PAGE 1 - THREE COLUMNS
+% =============================================================
+\noindent\begin{adjustbox}{max totalsize={0.327\textwidth}{7.62in},valign=t}\begin{minipage}[t]{0.327\textwidth}
+\begin{blk}{1. MATHEMATICAL MODELING / RESOURCE ALLOCATION}
+\teach A mathematical model includes
+\[
+\boxed{\text{Input Data}+\text{Decision Variables}+\text{Constraints}+\text{Objective Function}}.
+\]
+Ask: \emph{What information is given? What must be decided? What rules must be satisfied? What is being optimized?}
+
+For resource allocation:
+\[
+i\in I:\text{ resources},\qquad j\in J:\text{ activities/products}.
+\]
+\[
+a_{ij}=\text{resource }i\text{ required per unit of }j,
+\quad b_i=\text{resource }i\text{ available},
+\quad p_j=\text{profit/contribution of }j.
+\]
+Decision Variable:
+\[
+\boxed{x_j=\text{amount of activity/product }j}.
+\]
+General model:
+\[
+\boxed{\begin{aligned}
+\max\quad&\sum_{j\in J}p_jx_j\\
+\text{subject to}\quad&\sum_{j\in J}a_{ij}x_j\le b_i,&&\forall i\in I,\\
+&x_j\ge0,&&\forall j\in J.
+\end{aligned}}
+\]
+Interpretation:
+\[
+\boxed{\text{total use of resource }i\le\text{available resource }i}.
+\]
+
+\recognize Products/blends/production + profit + limited stock/material/labor/capacity $\Rightarrow$ resource-allocation formulation.
+
+\procedure
+\[
+\boxed{\text{indices}\to\text{parameters}\to\text{Decision Variables}\to\text{objective}\to\text{constraints}\to\text{domain}}.
+\]
+Course formulation rules that matter:
+\begin{itemize}\setlength\itemsep{0pt}\setlength\topsep{0pt}\setlength\parsep{0pt}\setlength\leftmargini{9pt}
+\item Clearly define subscripts and sets.
+\item Separate indices/sets, inputs, Decision Variables.
+\item Do not leave dangling subscripts.
+\item An index in a constraint is summed over \emph{or} specified with $\forall$.
+\item If two Decision Variable families represent connected decisions, link them.
+\end{itemize}
+
+\textbf{Summation reading:}
+\[
+\sum_{j=1}^{3}a_{ij}x_j=a_{i1}x_1+a_{i2}x_2+a_{i3}x_3.
+\]
+$j$ is summed; $i$ identifies which constraint is written.
+
+\example Four blends, three limited stocks: $I=[3]$, $J=[4]$,
+\[
+x_j=\text{gallons of blend }j\text{ produced}.
+\]
+\[
+\boxed{\begin{aligned}
+\max\quad&.10x_1+.11x_2+.14x_3+.25x_4\\
+\text{s.t.}\quad&.40x_1+.20x_2+.50x_3+.20x_4\le15000\\
+&.20x_1+.20x_2+.05x_3+.40x_4\le14000\\
+&.40x_1+.60x_2+.45x_3+.40x_4\le20000\\
+&x_1,x_2,x_3,x_4\ge0.
+\end{aligned}}
+\]
+\stuck \emph{What do I choose?} $\Rightarrow$ variable. \emph{What is limited?} $\Rightarrow$ one constraint for each limited item.
+\end{blk}
+\end{minipage}\end{adjustbox}\hfill
+%
+\begin{adjustbox}{max totalsize={0.327\textwidth}{7.62in},valign=t}\begin{minipage}[t]{0.327\textwidth}
+\begin{blk}{2. TRANSPORTATION / SOURCE-DESTINATION}
+\teach Let
+\[
+I=\text{sources},\qquad J=\text{destinations},\qquad \boxed{\mathcal R\subseteq I\times J}=\text{allowed routes}.
+\]
+Parameters:
+\[
+c_{ij}=\text{unit shipping cost},\qquad a_i=\text{supply/capacity at source }i,
+\]
+\[
+d_j=\text{demand at destination }j.
+\]
+Decision Variable:
+\[
+\boxed{x_{ij}=\text{amount shipped from source }i\text{ to destination }j}.
+\]
+General model:
+\[
+\boxed{\begin{aligned}
+\min\quad&\sum_{(i,j)\in\mathcal R}c_{ij}x_{ij}\\
+\text{s.t.}\quad&\sum_{j:(i,j)\in\mathcal R}x_{ij}\le a_i,&&\forall i\in I,\\
+&\sum_{i:(i,j)\in\mathcal R}x_{ij}\ge d_j,&&\forall j\in J,\\
+&x_{ij}\ge0,&&(i,j)\in\mathcal R.
+\end{aligned}}
+\]
+Course meaning: \textbf{satisfy demand at every destination}; \textbf{do not exceed capacity at any source}.
+
+\recognize ``from--to'', plant--warehouse, warehouse--outlet, source--destination, shipping $\Rightarrow x_{ij}$.
+
+\begin{center}
+\begin{tikzpicture}[x=1.02cm,y=.62cm,>=Latex,every node/.style={font=\scriptsize}]
+\node[font=\scriptsize\bfseries] at (0,3.05) {SOURCE $i$};
+\node[font=\scriptsize\bfseries] at (6.3,3.05) {DESTINATION $j$};
+\node[circle,draw=DrawBlue,fill=DrawBlueFill,minimum size=18pt,inner sep=0pt] (S1) at (0,2.15) {$1$};
+\node[circle,draw=DrawBlue,fill=DrawBlueFill,minimum size=18pt,inner sep=0pt] (S2) at (0,.75) {$2$};
+\node[circle,draw=DrawOrange,fill=DrawOrangeFill,minimum size=18pt,inner sep=0pt] (D1) at (6.3,2.15) {$1$};
+\node[circle,draw=DrawOrange,fill=DrawOrangeFill,minimum size=18pt,inner sep=0pt] (D2) at (6.3,.75) {$2$};
+\node[anchor=east] at (-.42,2.15) {$a_1$};
+\node[anchor=east] at (-.42,.75) {$a_2$};
+\node[anchor=west] at (6.72,2.15) {$d_1$};
+\node[anchor=west] at (6.72,.75) {$d_2$};
+\tikzset{route/.style={->,DrawBlue,semithick},lab/.style={fill=white,inner sep=1pt,text=black}}
+\draw[route] (S1)--(D1) node[lab,pos=.52,above] {$x_{11}$};
+\draw[route] (S1) to[bend right=18] node[lab,pos=.30,below] {$x_{12}$} (D2);
+\draw[route] (S2) to[bend left=18] node[lab,pos=.30,above] {$x_{21}$} (D1);
+\draw[route] (S2)--(D2) node[lab,pos=.52,below] {$x_{22}$};
+\node[anchor=north,align=center] at (0,-.05) {capacity $a_i$};
+\node[anchor=north,align=center] at (6.3,-.05) {demand $d_j$};
+\end{tikzpicture}
+\end{center}
+\textbf{How to read the drawing:} each blue arrow is one allowed route $(i,j)$ and one $x_{ij}$. Fix source $i$ and sum arrows leaving it: $\sum_jx_{ij}\le a_i$. Fix destination $j$ and sum arrows entering it: $\sum_ix_{ij}\ge d_j$. No route means no Decision Variable for that pair.
+
+\procedure Allowed routes $\to$ Decision Variables on those routes $\to$ shipping-cost objective $\to$ source constraints $\to$ destination constraints $\to$ nonnegativity.
+
+\example Mock routes
+\[
+\mathcal R=\{(1,1),(1,2),(2,2),(2,3),(3,1),(3,3)\}.
+\]
+Cost $=10$, supplies $(4,6,8)$, demands $(8,3,7)$:
+\[
+\boxed{\begin{aligned}
+\min\quad&10(x_{11}+x_{12}+x_{22}+x_{23}+x_{31}+x_{33})\\
+\text{s.t.}\quad&x_{11}+x_{12}\le4,\ x_{22}+x_{23}\le6,\ x_{31}+x_{33}\le8,\\
+&x_{11}+x_{31}\ge8,\ x_{12}+x_{22}\ge3,\ x_{23}+x_{33}\ge7,\\
+&x_{11},x_{12},x_{22},x_{23},x_{31},x_{33}\ge0.
+\end{aligned}}
+\]
+\stuck Source constraint = outgoing. Destination constraint = incoming.
+\end{blk}
+\end{minipage}\end{adjustbox}\hfill
+%
+\begin{adjustbox}{max totalsize={0.327\textwidth}{7.62in},valign=t}\begin{minipage}[t]{0.327\textwidth}
+\begin{blk}{3. STANDARD FORM / REFORMULATION}
+\teach Target Standard Form:
+\[
+\boxed{\begin{aligned}\min\quad&c^\top x\\\text{s.t.}\quad&Ax=b\\&x\ge0.\end{aligned}}
+\]
+Course conversion order:
+\[
+\boxed{\text{fix variable signs}\to\text{inequalities to equalities}\to\text{make objective a minimum}}.
+\]
+Variable-domain rules:
+\[
+\begin{array}{rcl}
+x\ge0&\Rightarrow&\text{no change},\\
+x\le0&\Rightarrow&x=-x',\quad x'\ge0,\\
+x\in\R&\Rightarrow&x=x^+-x^-,\quad x^+,x^-\ge0.
+\end{array}
+\]
+Constraint rules:
+\[
+\boxed{a^\top x\le b\Rightarrow a^\top x+s=b,\ s\ge0},
+\]
+\[
+\boxed{a^\top x\ge b\Rightarrow a^\top x-s=b,\ s\ge0}.
+\]
+Objective rule:
+\[
+\boxed{\max c^\top x\Rightarrow\min(-c^\top x)}.
+\]
+Absolute value, for linear $f(x)$:
+\[
+\boxed{\min|f(x)|\Rightarrow\min t\quad\text{s.t. }t\ge f(x),\ t\ge-f(x)}.
+\]
+
+\procedure \textbf{Define the transformed variable vector before $A$.}
+\[
+x=(x_1,\ldots,x_n)^\top\quad\Rightarrow\quad\boxed{x_j\longleftrightarrow A_j\longleftrightarrow c_j}.
+\]
+$A_j=$ coefficient column for $x_j$; $c_j=$ objective coefficient for $x_j$; $b=$ right-hand side.
+
+\textbf{General feasibility/optimality facts:}
+\[
+\boxed{\text{feasible solution satisfies all constraints}},
+\qquad\boxed{\text{optimal}\Rightarrow\text{feasible}}.
+\]
+\[
+\boxed{\text{feasible}\not\Rightarrow\text{optimal}},\qquad x\ge0\text{ is part of Standard Form feasibility}.
+\]
+Improving direction:
+\[
+\boxed{\max c^\top x\Rightarrow+c},\qquad\boxed{\min c^\top x\Rightarrow-c}.
+\]
+
+\textbf{Linear algebra needed later:}
+\[
+\sum_j\lambda_jA_j=0\Rightarrow\lambda_j=0\ \forall j\quad\text{(linear independence)},
+\]
+\[
+\boxed{\text{Basis}=\text{linearly independent vectors that span the space}}.
+\]
+
+\example Mock example: $x_3\le0$, $x_4\in\R$, $\min|x_1+x_4|$.
+\[
+x_3=-\bar x_3,\qquad x_4=x_4^+-x_4^-.
+\]
+With $s_1,s_2,s_3,s_4,t\ge0$:
+\[
+\begin{aligned}
+x_1-x_2-s_1&=1,\\
+-\bar x_3+x_4^+-x_4^-+s_2&=3,\\
+x_1+x_4^+-x_4^- -t+s_3&=0,\\
+-x_1-x_4^++x_4^- -t+s_4&=0.
+\end{aligned}
+\]
+\[
+\boxed{x=(x_1,x_2,\bar x_3,x_4^+,x_4^-,t,s_1,s_2,s_3,s_4)^\top}.
+\]
+\[
+c=(0,0,0,0,0,1,0,0,0,0)^\top,\qquad b=(1,3,0,0)^\top.
+\]
+Mock theoretical statements follow immediately:
+\[
+\boxed{(a)\ T\qquad(b)\ T\qquad(c)\ T\qquad(d)\ F}.
+\]
+\stuck Transform first; fix the variable order second; only then read off $A,b,c$.
+\end{blk}
+\end{minipage}\end{adjustbox}
+
+\newpage
+\fontsize{5.10}{5.62}\selectfont
+\begin{center}
+{\fontsize{9.7}{10.1}\selectfont\bfseries IEE 574 EXAM 1 - GEOMETRY, GRAPHICAL METHOD, BASIC SOLUTIONS}\\[-1pt]
+{\scriptsize General rules solve unseen questions; the numerical Homework/Mock cases below are applications only.}
+\end{center}
+\vspace{-2pt}
+
+% =============================================================
+% PAGE 2 - THREE COLUMNS
+% =============================================================
+\noindent\begin{adjustbox}{max totalsize={0.327\textwidth}{7.62in},valign=t}\begin{minipage}[t]{0.327\textwidth}
+\begin{blk}{4. HYPERPLANE / HALF-SPACE / ANGLE}
+\teach
+\[
+\boxed{H=\{x\in\R^n:a^\top x=b\}},\qquad x^0\in H\Rightarrow\boxed{a^\top(x-x^0)=0}.
+\]
+$a$ is normal to the Hyperplane. The two Half-Spaces are
+\[
+\boxed{a^\top(x-x^0)\ge0},\qquad\boxed{a^\top(x-x^0)\le0}.
+\]
+Angle reasoning:
+\[
+\boxed{a^\top(x-x^0)=\|a\|\,\|x-x^0\|\cos\theta}.
+\]
+Hence
+\[
+\theta<90^\circ\Rightarrow a^\top(x-x^0)>0,\quad
+\theta=90^\circ\Rightarrow =0,\quad
+\theta>90^\circ\Rightarrow <0.
+\]
+
+\recognize $a^\top x=b$ $\Rightarrow$ Hyperplane. Angle with $a$ $\Rightarrow$ determine the sign of the dot product.
+
+\begin{center}
+\begin{tikzpicture}[x=1.28cm,y=.56cm,>=Latex,every node/.style={font=\scriptsize}]
+\fill[DrawOrangeFill] (0,0)--(0,4.8)--(2.45,0)--cycle;
+\fill[DrawGreenFill] (0,4.8)--(4.8,4.8)--(4.8,0)--(2.45,0)--cycle;
+\draw[AxisGray,-{Latex}] (-.12,0)--(5.08,0) node[right] {$x_1$};
+\draw[AxisGray,-{Latex}] (0,-.15)--(0,5.10) node[above] {$x_2$};
+\draw[DrawBlue,very thick] (0,4.8)--(2.45,0);
+\node[text=black,fill=white,inner sep=1pt] at (1.20,2.95) {$H:\ a^\top x=b$};
+\coordinate (O) at (1.25,2.35);
+\coordinate (A) at (2.05,2.95);
+\coordinate (X) at (2.25,3.58);
+\fill[black] (O) circle (1.6pt) node[below left] {$x^0$};
+\fill[DrawGreen] (X) circle (1.8pt) node[above right,text=black] {$x$};
+\draw[DrawRed,-{Latex},very thick] (O)--(A) node[midway,below right,text=black] {$a$};
+\draw[DrawGreen,-{Latex},thick] (O)--(X) node[midway,above left,text=black] {$x-x^0$};
+\pic[draw=DrawPurple,->,angle radius=5mm,angle eccentricity=1.25,"$\theta$" text=black] {angle=A--O--X};
+\node[font=\scriptsize\bfseries,text=black,align=center] at (.55,.72) {$S_-$\\$a^\top(x-x^0)<0$};
+\node[font=\scriptsize\bfseries,text=black,align=center] at (3.85,4.18) {$S_+$\\$a^\top(x-x^0)>0$};
+\end{tikzpicture}
+\end{center}
+\textbf{How to read the drawing:} blue $H$ is the Hyperplane; red $a$ is perpendicular to it; $x^0$ lies on $H$. Green is $x-x^0$. Acute angle with $a$ gives a positive dot product and places $x$ in $S_+$; obtuse gives a negative dot product and places $x$ in $S_-$.
+
+\procedure Identify $a,b$ $\to$ draw $H$ $\to$ choose/reference $x^0\in H$ $\to$ draw $a$ $\to$ use the dot-product sign.
+
+\example For $2x_1+x_2=4$, $a=(2,1)^\top$, $x^0=(1,2)^\top$. Acute angle $\Rightarrow$
+\[
+\boxed{a^\top(x-x^0)>0\Rightarrow a^\top x>4}.
+\]
+\end{blk}
+
+\begin{blk}{5. POLYHEDRON / POLYTOPE / RECESSION}
+\teach
+\[
+\boxed{\text{Polyhedron}=\text{intersection of Half-Spaces}},\qquad
+\boxed{\text{Polytope}=\text{bounded Polyhedron}}.
+\]
+Decision question: \boxed{\text{Is the feasible region bounded?}}
+
+A nonzero $d$ is a Recession Direction if
+\[
+\boxed{x+\lambda d\in X,\qquad \forall x\in X,\ \lambda\ge0}.
+\]
+For $X=\{x:Ax\le b,\ x\ge0\}$:
+\[
+\boxed{Ad\le0,\quad d\ge0,\quad d\ne0}.
+\]
+For $X=\{x:Ax=b,\ x\ge0\}$:
+\[
+\boxed{Ad=0,\quad d\ge0,\quad d\ne0}.
+\]
+\[
+\boxed{\text{bounded set}\Rightarrow\text{no nonzero Recession Direction}}.
+\]
+Extreme Direction = Recession Direction not expressible as a strict conic combination of two distinct Recession Directions.
+
+\begin{center}
+\begin{tikzpicture}[x=1.08cm,y=.44cm,>=Latex,every node/.style={font=\scriptsize}]
+\draw[AxisGray,-{Latex}] (-.1,0)--(6.65,0) node[right] {$x_1$};
+\draw[AxisGray,-{Latex}] (0,-.12)--(0,4.25) node[above] {$x_2$};
+\fill[DrawBlueFill] (0,.85)--(1.7,1.65)--(6.2,3.05)--(6.2,0)--(0,0)--cycle;
+\draw[DrawBlue,thick] (0,.85)--(1.7,1.65)--(6.2,3.05);
+\draw[DrawBlue,thick] (0,0)--(6.2,0);
+\coordinate (Q) at (2.05,.95);
+\fill[black] (Q) circle (1.6pt) node[below left] {$x$};
+\draw[DrawRed,-{Latex},very thick] (Q)--++(3.25,0) node[pos=.70,above,text=black] {$d^{(1)}$};
+\draw[DrawPurple,-{Latex},very thick] (Q)--++(2.85,1.40) node[pos=.72,above,text=black] {$d^{(2)}$};
+\node[text=black,align=center] at (4.20,3.55) {unbounded feasible\\Polyhedron $X$};
+\node[text=black] at (4.55,.32) {$x+\lambda d^{(1)},\ \lambda\ge0$};
+\end{tikzpicture}
+\end{center}
+\textbf{How to read the drawing:} the light-blue region continues without bound. From feasible $x$, a Recession Direction $d$ generates the full feasible ray $x+\lambda d$ for every $\lambda\ge0$. The red and purple rays are extreme directions of the recession cone.
+
+\procedure Intersect Half-Spaces $\to$ test boundedness $\to$ derive homogeneous conditions on $d$ $\to$ find extreme generators.
+
+\example Homework set is unbounded $\Rightarrow$ Polyhedron, not Polytope. Its extreme recession rays are generated by
+\[
+\boxed{d^{(1)}=(1,0)^\top,\qquad d^{(2)}=(2,1)^\top}.
+\]
+\end{blk}
+\end{minipage}\end{adjustbox}\hfill
+%
+\begin{adjustbox}{max totalsize={0.327\textwidth}{7.62in},valign=t}\begin{minipage}[t]{0.327\textwidth}
+\begin{blk}{6. GRAPHICAL METHOD / EXTREME POINTS}
+\teach For any two-variable Linear Programming model:
+\[
+\boxed{\begin{array}{l}
+1.\ \text{replace each inequality by its boundary line}\\
+2.\ \text{draw the boundary using intercepts}\\
+3.\ \text{use a test point to choose the feasible side}\\
+4.\ \text{intersect all feasible Half-Spaces}\\
+5.\ \text{identify Extreme Points}\\
+6.\ \text{draw }c^\top x=z\text{ (parallel contours)}\\
+7.\ \text{move in the improving direction}\\
+8.\ \text{find the last feasible contact}
+\end{array}}
+\]
+For $a_1x_1+a_2x_2\le b$:
+\[
+\boxed{a_1x_1+a_2x_2=b},\quad
+x_2=0\Rightarrow x_1=b/a_1,\quad x_1=0\Rightarrow x_2=b/a_2.
+\]
+Improving direction:
+\[
+\boxed{\max\Rightarrow+c},\qquad\boxed{\min\Rightarrow-c}.
+\]
+Extreme Point: cannot be represented as a strict convex combination of two distinct feasible points; graphically, a corner. If a finite optimal value exists, an optimal Extreme Point exists. \textbf{Not every Extreme Point is optimal.}
+
+\begin{center}
+\begin{tikzpicture}[x=.67cm,y=.27cm,>=Latex,every node/.style={font=\scriptsize}]
+\fill[DrawBlueFill] (0,0)--(10,0)--(5.2,8)--(0,8)--cycle;
+\draw[AxisGray,-{Latex}] (-.30,0)--(11.45,0) node[right] {$x_1$};
+\draw[AxisGray,-{Latex}] (0,-.35)--(0,11.10) node[above] {$x_2$};
+\draw[DrawBlue,very thick] (0,8)--(6.0,11) node[pos=.28,above left,text=black,fill=white,inner sep=1pt] {$C_1$};
+\draw[DrawTeal,very thick] (3.4,11)--(10,0) node[pos=.72,below right,text=black,fill=white,inner sep=1pt] {$C_2$};
+\draw[DrawPurple,very thick] (0,8)--(10.7,8) node[pos=.97,above,text=black,fill=white,inner sep=1pt] {$C_3$};
+\draw[DrawOrange,dashed,semithick] (0,5.7)--(11.0,1.3) node[pos=.88,below,text=black] {$z_1$};
+\draw[DrawOrange,dashed,very thick] (0,10.08)--(11.0,5.68) node[pos=.88,above,text=black] {$z_2$};
+\node[text=black,fill=white,inner sep=1pt] at (8.45,6.50) {$c^\top x=z$};
+\draw[DrawRed,-{Latex},very thick] (1.5,2.0)--++(.95,2.5);
+\node[text=black] at (2.70,4.05) {$+c$};
+\fill[black] (0,0) circle (1.4pt);
+\fill[black] (10,0) circle (1.4pt);
+\fill[black] (0,8) circle (1.4pt);
+\fill[DrawGreen] (5.2,8) circle (2.1pt);
+\node[anchor=south west,text=black,fill=white,inner sep=1pt] at (5.32,8.14) {$x^*$};
+\node[text=black,align=center] (last) at (5.55,9.55) {last feasible contact};
+\draw[DrawGreen,-{Latex},semithick] (last.south)--(5.24,8.15);
+\node[text=black,align=center] at (4.0,1.0) {feasible region\\$=\bigcap$ feasible Half-Spaces};
+\end{tikzpicture}
+\end{center}
+\textbf{How to read the drawing:} $C_1,C_2,C_3$ are constraint boundaries; light blue is the feasible intersection. Orange dashed lines are parallel objective contours. For maximization, move the contour in red direction $+c$; the green point $x^*$ is the last feasible contact and the graphical optimum.
+
+\procedure Boundaries $\to$ feasible region $\to$ Extreme Points $\to$ objective contours $\to$ improving direction $\to$ optimum. Or evaluate $c^\top x$ at every Extreme Point.
+
+\example Mock model Extreme Points:
+\[
+(0,0),\quad(10,0),\quad(0,8),\quad(26/5,8).
+\]
+Objective values:
+\[
+0,\quad20,\quad40,\quad252/5.
+\]
+Thus
+\[
+\boxed{x^*=(26/5,8),\qquad z^*=252/5=50.4}.
+\]
+
+\textbf{Four solution cases:} unique optimal solution; infinite optimal solutions; infeasible; unbounded. Remember:
+\[
+\boxed{\text{unbounded feasible region}\not\Rightarrow\text{unbounded objective}}.
+\]
+\end{blk}
+\end{minipage}\end{adjustbox}\hfill
+%
+\begin{adjustbox}{max totalsize={0.327\textwidth}{7.62in},valign=t}\begin{minipage}[t]{0.327\textwidth}
+\begin{blk}{7. BASIC SOLUTION / BASIC FEASIBLE SOLUTION}
+\teach Suppose
+\[
+Ax=b,\qquad x\ge0,\qquad A\in\R^{m\times n}.
+\]
+Basic Solution procedure:
+\[
+\boxed{\begin{array}{l}
+1.\ \text{choose }m\text{ linearly independent columns of }A\\
+2.\ \text{set the other }n-m\text{ variables equal to }0\\
+3.\ \text{solve }Ax=b
+\end{array}}
+\]
+The resulting vector is a \textbf{Basic Solution}. If it also satisfies $x\ge0$, it is a \textbf{Basic Feasible Solution}.
+\[
+\boxed{\text{Extreme Point}\Longleftrightarrow\text{Basic Feasible Solution}}.
+\]
+
+\recognize ``Find all Basic Solutions'' $\Rightarrow$ first obtain Standard Form, then count $m$ equality constraints and $n$ variables (including slack variables).
+
+\procedure Check selected columns are linearly independent $\to$ set nonselected variables to zero $\to$ solve $\to$ check nonnegativity. Different bases may produce the same Basic Feasible Solution (degeneracy).
+
+\example For the mock graphical model:
+\[
+-x_1+2x_2+s_1=16,
+\]
+\[
+5x_1+3x_2+s_2=50,
+\qquad x_2+s_3=8,
+\]
+with $x_1,x_2,s_1,s_2,s_3\ge0$. Hence
+\[
+x=(x_1,x_2,s_1,s_2,s_3)^\top,\qquad \boxed{m=3,\ n=5}.
+\]
+Each candidate basis chooses $3$ independent columns and sets $2$ variables to zero.
+
+\[
+\begin{array}{c|c}
+\text{Distinct Basic Solution }(x_1,x_2,s_1,s_2,s_3)&\text{Feasible?}\\\hline
+(26/5,8,26/5,0,0)&\checkmark\\
+(0,8,0,26,0)&\checkmark\\
+(4,10,0,0,-2)&\times\\
+(10,0,26,0,8)&\checkmark\\
+(-16,0,0,130,8)&\times\\
+(0,50/3,-52/3,0,-26/3)&\times\\
+(0,0,16,50,8)&\checkmark
+\end{array}
+\]
+Basic Feasible Solutions in original $(x_1,x_2)$-space:
+\[
+\boxed{(26/5,8),\quad(0,8),\quad(10,0),\quad(0,0)}.
+\]
+At $(0,8)$, different bases give the same Basic Feasible Solution (degeneracy).
+
+\stuck Count $m,n$ first. Choose $m$ columns; set $n-m$ variables to zero; solve; ask only: \emph{are all components nonnegative?}
+\end{blk}
+
+\begin{blk}{8. HIGH-VALUE THEORETICAL FACTS}
+\[
+\begin{array}{ll}
+\text{Every optimal solution is feasible} & \textbf{TRUE}\\
+\text{Every feasible solution is optimal} & \textbf{FALSE}\\
+\text{Standard Form feasible solution satisfies }x\ge0 & \textbf{TRUE}\\
+\text{Minimization improving direction is }c & \textbf{FALSE}\\
+\text{Every Polytope is a Polyhedron} & \textbf{TRUE}\\
+\text{Every Polyhedron is a Polytope} & \textbf{FALSE}\\
+\text{Every Basic Solution is feasible} & \textbf{FALSE}\\
+\text{Extreme Point}\Longleftrightarrow\text{Basic Feasible Solution} & \textbf{TRUE}\\
+\text{Every Extreme Point is optimal} & \textbf{FALSE}
+\end{array}
+\]
+\end{blk}
+\end{minipage}\end{adjustbox}
+
+\end{document}
