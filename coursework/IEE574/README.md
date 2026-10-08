@@ -8,7 +8,8 @@ Current alignment:
 - mathematical notation,
 - deterministic mathematical modeling,
 - linear programming,
-- LP geometry and properties.
+- LP geometry and properties,
+- basis updates, reduced costs, the primal Simplex method, and optimality/unboundedness certificates.
 
 ## Course reasoning standard
 
@@ -17,6 +18,7 @@ The default problem-solving architecture for this course is documented in:
 - [`notes/modeling-reasoning-protocol.md`](notes/modeling-reasoning-protocol.md) — engineering interpretation → notation tables → constraint derivation → formulation → audit → Julia implementation → verification → engineering interpretation.
 - [`notes/notation-standard.md`](notes/notation-standard.md) — common mathematical notation and modeling order.
 - [`notes/topics-1-6-authoritative-framework.md`](notes/topics-1-6-authoritative-framework.md) — authoritative Topics 1–6 baseline: OR workflow, formulation rules, IEE 574 standard form, LP geometry, recession/extreme directions, graphical method, and BS/BFS theory.
+- [`notes/homework-3-mathematical-skills.md`](notes/homework-3-mathematical-skills.md) — Homework 3 learning outcomes: nine Simplex-related skills, basis/direction/reduced-cost identities, unboundedness and optimality certificates, and an eight-item exam-readiness checklist.
 
 The protocol treats tables as **reasoning and model-debugging instruments**, not merely formatting devices. For substantial problems, use:
 
