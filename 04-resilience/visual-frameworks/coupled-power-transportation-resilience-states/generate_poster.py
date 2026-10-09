@@ -35,7 +35,7 @@ def build_svg():
         o.append(f'<ellipse cx="{cx}" cy="{y}" rx="{rx}" ry="{ry}" fill="white" stroke="{gmap[kind]}" stroke-width="25"/>')
         if kind == 'boundary': o.append(f'<ellipse cx="{cx}" cy="{y}" rx="205" ry="34" fill="#FFFFFF"/>')
         if kind == 'darkred': o.append(f'<ellipse cx="{cx}" cy="{y}" rx="205" ry="34" fill="#FFFFFF"/>')
-        c1, c2 = ('stateW','descW') if False else ('state','desc')
+        c1, c2 = ('state', 'desc')  # White interiors require high-contrast text.
         o.append(f'<text x="{cx}" y="{y-2}" text-anchor="middle" class="{c1}">{name}</text>')
         o.append(f'<text x="{cx}" y="{y+26}" text-anchor="middle" class="{c2}">{desc}</text>')
     o.append('<path d="M760 112 h55 q20 0 20 20 v445 q0 20 -20 20 h-55" fill="none" stroke="#0B6B28" stroke-width="5"/>')
