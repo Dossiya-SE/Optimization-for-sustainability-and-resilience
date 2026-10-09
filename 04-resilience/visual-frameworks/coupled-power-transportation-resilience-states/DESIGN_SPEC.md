@@ -74,11 +74,13 @@ $$
 
 ## Color system
 
+**Current authored vector policy (2026-10-09):** white canvas and state interiors, solid green for admissible states, distinct teal for the critical boundary, red for nonviable/failure. No gold, amber, ochre, gradients, decorative fills or untested empirical claims. All SVG classes use dark explanatory text. Original categorical state labels and signed-distance claims remain subject to the mathematical caveats below.
+
 | Regime | Role | Recommended hex |
 |---|---|---|
-| Green | viable / resilient-sustainable | `#058A2A`, `#19B83B`, `#8ED600` |
-| Amber | near-boundary / viability warning | `#F2B705`, `#FF8A00`, `#8A4B00` |
-| Red | non-viable / failure cascade | `#E10600`, `#B40000`, `#6F0000` |
+| Green | viable / resilient-sustainable | `#176B42` (plus labels) |
+| Teal | near-boundary / viability warning | `#006D70` (plus dashed line) |
+| Red | non-viable / failure cascade | `#B4232C`, `#821B25` (plus line styles) |
 | Navy | title / scientific text | `#07153A` |
 | White | background / reverse text | `#FFFFFF` |
 
